@@ -1,0 +1,10 @@
+The reaction mixture is allowed to warm to room temperature and stirred overnight.
+The combined organic layers were washed with brine, dried over sodium sulfate, filtered, and concentrated to yield 2.98 g of N-{2-[4-amino-7-[(6-aminohexyl)oxy]-2-(ethoxymethyl)-1H-imidazo[4,5-c]quinolin-1-yl]-1,1-dimethylethyl}-N-isopropylurea as a dark orange solid.
+3-Amino-2,4-dichloro-benzamide (2.00 g, 9.8 mmol) in THF (45 mL) was added dropwise to LiAlH4 (1 M in THF, 24.4 mL) in THF (45 mL).
+A further drop of methanesulfonyl chloride was added and the mixture continued to stir at RT for 30 min.
+The reaction mixture was cooled to −80° C., and a solution of tert-butyl 6-[(cyclopropylmethoxy)methyl]-6-hydroxy-1,4-oxazepane-4-carboxylate (Preparation 80, 50 g, 0.22 mol, 1 eq) in THF was added.
+After few hours, reaction mixture can be diluted with water and neutralize with hydrochloric acid, filter and recrystallize to give title compound.
+The reaction mixture was allowed to reach room temperature and stirred over night.
+After the reaction is completed it was cooled to room temperature and extracted with ethyl acetate.
+The resulting precipitate was collected by filtration, washed with water and ether and dried for 4 hours at 60° C. under high vacuum to give 7-benzyloxy-3,4-dihydroquinazolin-4-one (7.02 g, 63%).
+After concentration, the residue was diluted with dichloromethane (200 mL/mmol), washed with water (62 mL/mmol x 3).

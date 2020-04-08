@@ -1,0 +1,10 @@
+STIR for overnight at room temperature.
+COLLECTLAYER organic; WASH with brine; DRYSOLUTION over sodium sulfate; FILTER keep filtrate; CONCENTRATE; YIELD N-{2-[4-amino-7-[(6-aminohexyl)oxy]-2-(ethoxymethyl)-1H-imidazo[4,5-c]quinolin-1-yl]-1,1-dimethylethyl}-N-isopropylurea (2.98 g).
+ADD LiAlH4 ‌(1 M in THF) (24.4 mL); ADD THF (45 mL); MAKESOLUTION with 3-Amino-2,4-dichloro-benzamide (2.00 g, 9.8 mmol) and THF (45 mL); ADD SLN dropwise.
+ADD methanesulfonyl chloride (1 drop); STIR for 30 min at RT.
+SETTEMPERATURE −80° C; MAKESOLUTION with tert-butyl 6-[(cyclopropylmethoxy)methyl]-6-hydroxy-1,4-oxazepane-4-carboxylate (50 g, 0.22 mol, 1 eq) and THF; ADD SLN.
+WAIT for few hours; ADD water; PH with hydrochloric acid to pH neutral; FILTER; RECRYSTALLIZE from unknown; YIELD title compound.
+STIR for over night at room temperature.
+SETTEMPERATURE room temperature; EXTRACT with ethyl acetate.
+FILTER keep precipitate; WASH with water; WASH with ether; DRYSOLID for 4 hours at 60° C under vacuum; YIELD 7-benzyloxy-3,4-dihydroquinazolin-4-one (7.02 g, 63%).
+CONCENTRATE; ADD dichloromethane (200 mL); WASH with water (62 mL) 3 x.

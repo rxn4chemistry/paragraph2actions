@@ -1,0 +1,10 @@
+The reaction mixture was heated to 60 °C to give a homogeneous solution that was maintained at 60 °C for 16 hours at which time the starting material was completely consumed.
+To the residue were added ethyl acetate (3 ml) and heptane (3 ml) to precipitate a solid.
+To a stirred solution of 5-(4-bromophenyl)-1-[3-fluoro-4-(methylsulfonyl)phenyl]-3-(trifluoromethyl)-1H-pyrazole (0.15 g, 0.324 mmol) in DME (3.9 mL) was added furan -3-boronic acid (0.044 g, 0.389 mmol), bis(triphenylphosphine) palladium( II)chloride (0.025 g, 0.04 mmol) and saturated NaHCO3 solution (1.3 mL) at room temperature under nitrogen.
+Yield 1.5 g (50.34%).
+Appl. (1992), GB 2253848 A1 was reacted with [2-methyl-5-(4-trifluoromethoxy-phenyl)-2H-pyrazol-3-yl]-methanol (example 11 d]) in the presence of N,N,N',N'-tetramethyl azodicarboxamide and tributylphosphine to give [rac]-2-{6-[2-methyl-5-(4-trifluoromethoxy-phenyl)-2H-pyrazol-3-ylmethoxy]-indol-1-yl}-propionic acid-ethyl ester as colorless oil.
+Potassium hydroxide (3.65 g, 65.1 mmol) is added all at once to a suspension of 4-bromo-3-methyl-1-(4-methylbenzenesulphonyl)-1H-pyrrole-2-carbonitrile (4.66 g, 13.7 mmol) in methanol (95 mL) cooled using an ice bath.
+The reaction mixture was stirred for 3 hours, and then 300 ml of water was added.
+The reaction was allowed to stir at room temperature for 92 hours and the mixture was poured into 2M aqueous hydrochloric acid (85ml) then diluted with water (170ml).
+Without further workup, the mixture is purified directly by preparative HPLC [Method 10].
+The reaction vessel is sealed and the solution is left to stir for 20 h. EtOAc (50 mL) is added.

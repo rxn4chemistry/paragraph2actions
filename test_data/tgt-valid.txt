@@ -1,0 +1,10 @@
+SETTEMPERATURE 60 °C; STIR for 16 hours at 60 °C.
+ADD ethyl acetate (3 ml); ADD heptane (3 ml).
+MAKESOLUTION with 5-(4-bromophenyl)-1-[3-fluoro-4-(methylsulfonyl)phenyl]-3-(trifluoromethyl)-1H-pyrazole (0.15 g, 0.324 mmol) and DME (3.9 mL); ADD SLN; ADD furan -3-boronic acid (0.044 g, 0.389 mmol) at room temperature under nitrogen; ADD bis(triphenylphosphine) palladium( II)chloride (0.025 g, 0.04 mmol) at room temperature under nitrogen; ADD saturated NaHCO3 solution (1.3 mL) at room temperature under nitrogen.
+NOACTION.
+FOLLOWOTHERPROCEDURE.
+MAKESOLUTION with 4-bromo-3-methyl-1-(4-methylbenzenesulphonyl)-1H-pyrrole-2-carbonitrile (4.66 g, 13.7 mmol) and methanol (95 mL); ADD SLN; ADD Potassium hydroxide (3.65 g, 65.1 mmol) at 0 °C.
+STIR for 3 hours; ADD water (300 ml).
+STIR for 92 hours at room temperature; ADD 2M aqueous hydrochloric acid (85ml); ADD water (170ml).
+PURIFY.
+STIR for 20 h; ADD EtOAc (50 mL).

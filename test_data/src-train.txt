@@ -1,0 +1,80 @@
+Both the organic and aqueous layers were separated.
+After then being left to stand at RT for three days, the mixture was diluted with ethyl acetate and washed with water.
+3-Bromo-2-fluoroaniline (10 g, 52.63 mmol) was dissolved in DCM (100 mL) under nitrogen atmosphere.
+The mixture was allowed to cool to rt and then concentrated in vacuo.
+The crude material was purified by silica gel chromatography eluting with 20-100% DCM/MeOH/DEA (950:45:5) in DCM to give benzyl 3-(formamido(7-((2-(trimethylsilyl)ethoxy)methyl)-7H-pyrrolo[2,3-d]pyrimidin-4-yl)methyl)piperidine-1-carboxylate (˜1:1 mixture of diastereomers) as a foam (2.2 g, 69%): LC/MS (Table 1, Method a) Rt=2.64 and 2.71 min; MS m/z: 524 (M+H)+.
+Anschließend wurden 1,2 ml Methanol und 14 ml Wasser zugegeben, über Nacht stehen gelassen, mit weiteren 70 ml Wasser versetzt und dreimal mit je 84 ml Methyl-tert.-butylether extrahiert.
+The reaction mixture was concentrated in vacuo before being dissolved in MeOH and purified by SPE on sulfonic acid (SCX) 5 g, first washing with MeOH and then eluting using a 10% NH3/MeOH solution to give the free base of the product.
+To a solution of methyl 1H-indazole-6-carboxylate (865 mg, 4.91 mmol) in N,N-dimethylformamide (12 mL) was added potassium hydroxide (840 mg, 3.05 mmol) followed by iodine (1.54 g, 5.9 mmol).
+The product was purified by HPLC and the required fractions were combined and basified with K2CO3 (0.5 g), extracted with DCM (2×50 ml), dried and the solvent removed in vacuo to yield a yellow solid (101 mg, 31%).
+The reaction mixture was heated to 90°C and maintained at the same temperature for overnight.
+Then water was added and the mixture was extracted with EA three times, the combined organic layers were washed with brine and dried (anhydrous Na2SO4).
+The product was analyzed by GC, GCMS and NMR (1H).
+After cooling to room temperature, the solvent was removed in vacuo.
+Crushed ice (40 g) was added and the pH was adjusted to pH 12 with 40% aqueous KOH solution.
+The mixture was stirred in the ice bath for 10 min, and then at RT for 20 min.
+After the elimination of the desiccant and solvent the residue was purified by chromatography (silica gel, gradient DCM/isopropanol 95:5 to DCM/isopropanol 90:10).
+During this time the temperature of the reaction is maintained below 30°.
+18.1 ml (18 mmol) of a 1-molar solution of boron tribromide in dichloromethane were added to a solution of 3.37 g (9 mmol) of 4-chloro-3-(2,3-dichloro-4-methoxybenzyl)-5-difluoromethoxy-1-methyl-1H-pyrazole in 45 ml of dichloromethane which had been cooled to (−78)° C.
+Ethyl 7,8,9-trifluoro-1-hydroxymethyl-5-oxo-5H-thiazolo[3,2-a]quinoline-4-carboxylate (0.50 g) prepared in Reference Example 13 and triethylamine (0.40 g) were added to dimethylsulfoxide (15 ml) and the mixture was stirred at 75°C for 1 hour and 30 minutes.
+The residue was purified via reverse phase prep-HPLC and the pure fractions were neutralized by pushing through PL-HCO3 resin.
+After the transfer is completed, the next step may be executed without any hold period.
+To a solution of 40 mg of the obtained residue in 2.0 ml of DCM was added 500 μl of trifluoroacetic acid under ice-cooling, followed by stirring at the same temperature for 2 hours.
+Prepared in 95% yield from 2,3-dichlorophenylisothiocyanate and the product of Example 203A according to the procedure described for Example 153B.
+The aqueous layer was extracted three times with dichloromethane, then the combined organic layer was washed with saturated aqueous sodium bicarbonate and brine.
+(7-Fluoro-2-oxo-1,5-naphthyridin-1(2H)-yl)acetaldehyde methyl hemiacetal (200 mg, 0.8396 mmol) and 1,1-dimethylethyl[(3S,4R)-3-hydroxy-4-piperidinyl]carbamate (for a synthesis see WO2004058144, Example 5(c), cis-(3-hydroxy-piperidin-4-yl)-carbamic acid tert-butyl ester Enantiomer 2) (192 mg, 1 eq.) were stirred in chloroform (10 ml) plus MeOH (0.5 ml) under argon for 2 h.
+After the initial exothermic reaction subsides the mixture is refluxed for 5 minutes, cooled and concentrated to dryness.
+The reaction mixture was diluted with water, acidified by 1.0 N HCl aqueous solution to the pH 3 to 4 and extracted with EtOAc.
+The mixture is subsequently left to crystallise at 0° C. and the separated solid material is filtered off under suction and transferred to a separating funnel.
+The reaction is stirred at room temperature for 20 min, poured into water, and extracted with dichloromethane.
+Concentration under reduced pressure followed by purification by column chromatography afforded the compound 162 as an orange solid. m.p. 49° C.
+To an ice-cooled solution of (6,7-difluoro-3-methyl-1,2-benzisoxazol-5-yl)methanol (Intermediate 334, 200 mg, 1.0 mmol) in CH2Cl2 (10 mL) was added NMO (235 mg, 2.0 mmol) followed TPAP (35 mg, 0.1 mmol) and mixture stirred for 2 hours at room temperature.
+To a suspension of 5.55 g of 5-amino-2-methoxy-4-nitrobenzoic acid in 40 ml of benzene was added 40 ml of thionyl chloride, and the mixture was refluxed for 4 hours.
+MS (EI): 448.1 (M+H)+.
+DCM (1-2 mL) and Et2O was added and a solid was formed.
+The resulting slurry was stirred for 30 minutes at 25° C. and the pH was adjusted to pH=9 by addition of 6M NaOH (0.135 L).
+Triphenylphosphine (2.95 g) and 3.73 g of carbon tetrabromide were added to a solution of 0.724 ml of (pyridin-2-yl)methanol in 40 ml of dichloromethane under ice cooling, and the mixture was stirred at that temperature for 1.5 hr.
+The intermediate of Formula-11 is reacted with Desloratadine in presence of K2CO3 and acetone to give Rupatadine base which on further treatment with fumaric acid in methanol to give Rupatadine Fumarate of Formula-1.
+After removal of solvent, purify the mixture by preparative-HPLC to afford 2-(5-(3,5-dichlorophenyl)-5-(trifluoromethyl)-4,5-dihydroisoxazol-3-yl)-N-(2-oxo-2-(2,2,2-trifluoroethylamino)ethyl)thieno[2,3-b]pyridine-5-carboxamide as a white solid (50 mg, 34.78%).
+The reaction mixture was allowed to cool to ambient temperature and poured into H2O (250 mL).
+A solution was prepared by dissolving 4-(1-{2-fluoro-1-[(3S)-pyrrolidin-3-yl]ethyl}-1H-pyrazol-4-yl)-7-{[2-(trimethylsilyl)ethoxy]methyl}-7H-pyrrolo[2,3-d]pyrimidine (from Example 70, Step 7; 25 mg, 0.058 mmol) and DIPEA (2.0E1 μL, 0.12 mmol) in NMP (0.2 mL).
+The mixture was stirred for 1.5 hours and then a solution containing 3-amino-4-{[3-(dimethylamino)propyl]amino}-N-methylbenzamide (1.653 g) in chloroform (9 ml) was added thereto.
+The product was dissolved in small amount of acetonitrile and ˜5 mL water, frozen in dry ice and lyophilized to give a powder product (20 mg, yield 44.1%).
+The residue was crystallized from 60 ml of benzotrifluoride, during this operation, the mixture was briefly boiled with activated carbon and filtered whilst still hot.
+The resulting mixture was stirred at room temperature for 1 hour with periodic addition of methanolic HCl to maintain the yellow color.
+The mixture was kept at 0°C for 30 min and then the mixture was allowed to adapt ambient temperature.
+The remaining aqueous layer was acidified to pH=3 with 1N HCl (8 mL).
+The reaction was then cooled in an ice bath. tert-Butyl 4-oxopiperidine-1-carboxylate (4.98 g) was added as a solution in dichloromethane (20 mL) and the reaction was stirred at room temperature for 1 hour.
+After the resultant mixture was stirred at room temperature for 1 hr, the mixture was neutralized with 1N hydrochloric acid and extracted with ethyl acetate.
+1H NMR (500 MHz, CD3OD) δ 8.45 - 8.44 (d, J = 2.0, 1H), 8.43 (s, 1H), 8.10 - 8.09 (d, J = 1.5, 1H), 8.09 - 8.06 (dd, J = 7.8, 1.7, 1H), 8.02 - 7.97 (m, 1H), 7.71 - 7.68 (d, J = 7.9, 1H), 7.41 - 7.39 (m, 1H), 7.39 - 7.37 (m, 1H), 2.88 (s, 3H).
+In 64 ml of THF and 24 ml of methanol was dissolved 396 mg (0.696 mmol) of the compound obtained in Example 149-1, to which 36 ml of a 2.5% potassium carbonate aqueous solution was then added, followed by stirring at room temperature for 6 hours.
+The resulting mixture is stirred at 70° C. for 15 min then cooled to r.t.
+The liquid temperature was raised on an oil bath and was held at 110°C.
+This material was obtained as described in example 34 from the opposite enantiomer (3S,4R)-4-amino-piperidine-1,3-dicarboxylic acid 1-tert-butyl ester 3-methyl ester, thiazolidine and 2-(2-bromo-ethyl)-pyridine (synthesized according to Synthesis, 5, 1987, 452-455).
+A solution of 100 g of the methyl ester of 4-methyl-3-cyclohexene-1-carboxylic acid in 20 ml of dry tetrahydrofuran was added at 20°-30° C. with cooling by an ice bath.
+1H NMR (400 MHz; CDCl3) δ: 0.84 (3H, t, J 7 Hz), 1.15-1.38 (5H, m), 1.65 (1 H, m), 1.75 (1 H, m), 1.84 (1 H, m), 2.04 (1 H, m), 2.38 (3H, s), 3.38 (1 H, m).
+An attempt to filter this was unsuccessful, and the mixture was left to stand overnight.
+The cooling bath was removed and the mixture was stirred at room temperature overnight.
+Water was added to the reaction mixture, and the mixture was neutralized with 2N hydrochloric acid and extracted with ethyl acetate.
+Prepared by Procedure E and Scheme M using N-(3-{1-[5-(4-iodophenyl)-5-oxopentyl]-4-piperidinyl}phenyl)-2-methylpropanamide and 1-naphthylhydrazine hydrochloride: ESMS m/e: 656.1 (M+H)+.
+The reaction mixture was poured into ice water, washed with diethyl ether, neutralized with 5 M aqueous solution of sodium hydroxide and extracted twice with ethyl acetate.
+A solution of 2-[(3,6-dichloro-4-pyridazinyl)oxy]ethanol containing some bromo-derivative (15.46 g; 0.0703 mol) in dry 1,4-dioxane (1.2 L) was treated with lithium hydride (2.3 g; 0.28 mol) in portions and stirred at room temperature for 1 hour under argon, then heated at 110° C. overnight.
+2,8-Dimethyl-5-((2-(pyridin-4-yl)oxiran-2-yl)methyl)-2,3,4,5-tetrahydro-1H-pyrido[4,3-b]indole (100 mg, 0.3 mmol) was added to 2M dimethyl amine solution in THF (5 mL) and the reaction mixture was allowed to stir at 60° C. overnight.
+The reaction mixture was left to warm to room temperature for 48 hours.
+To a solution of 6-(3-fluoro-4-methoxyphenyl)-5-(4-methoxyphenyl)-2H-pyridazin-3-one (150 mg, 0.46 mmol) in N,N-dimethylformamide (1.5 ml), potassium carbonate (317.6 mg) and ethyl iodide (179.2 mg) were added, followed by stirring at 70° C. for 3 hours.
+3-Nitro-phenol (1.00 g, 7.189 mmol) was treated with 4-bromo-benzyl bromide (1.976 g, 7.90 mmol) following the procedure of 189a providing the tile compound (2.1 g, 97%).
+The reaction mixture was stirred for 4 hrs at −70° C. and then left to return to room temperature.
+The same NaOH solution was then used to maintain pH at 9, and at costant pH the layers were separated.
+The title compound was prepared in a manner analogous to Example 15 utilizing Intermediate 17 and 2-chloro-benzooxazole.
+1H NMR (CDCl3, 300 MHz): δ7.40-7.29 (m, 5H), 5.23-5.09 (m, 2H), 4.56-4.52 (m, 2H), 4.11-4.04 (m, 1H), 3.69 (s, 3H), 3.45-3.42 (m, 1H), 3.22-3.12 (m, 1H), 2.27-2.10 (m, 1H), 1.96 (m, 1H), 1.47 (s, 9H) ppm.
+The mixture was stirred at the same temperature for additional 60 minutes and it was then allowed to cool down to room temperature.
+The aqueous phase was extracted once more with ethyl acetate (100 ml) and the combined organic phase was washed with water (3×100 ml) and saturated aqueous sodium chloride (100 ml) before being dried (MgSO4), filtered and concentrated to an oily residue (3.9 g) which was used in the subsequent reaction without further purification: NMR (200 MHz; CDCl3, TMS) δ:7.9-7.2 (m,8H), 4.37 (s,2H), and 3.60 (s,3H).
+1H NMR (DMSO-d6) 7.18 (1H, t), 6.83 (1H, d), 6.78 (1H, d), 4.07 (2H, s), 4.02 (2H, s), 3.78 (3H, s).
+The reaction was left to stand for 20 minutes with occasional swirling.
+The pale yellow solid 3-allyloxy-4-methoxynitrobenzene prepared above was added in portions over a 30 minute period and then the temperature was raised to 95° C. and maintained for 3 hours, after which time the starting material had been consumed.
+The title product is obtained as a red-brown solid (yield: 20.64 g (84%)).
+The residue again was diluted with water (200 ml), neutralized with KOH pellets and extracted with CH2Cl2 (3×100 ml).
+After cooling to room temperature, the precipitated product is filtered and rinsed successively with cold triethyl orthoformate and heptane, then dried under vacuum.
+When bubbling ceased, 1N HCl was added until the pH was ˜2.
+The reaction was allowed to warm to room temperature overnight and was quenched with saturated aqueous NH4Cl solution.
+3-Cyclobutyl-7-(piperidin-4-yloxy)-2,3,4,5-tetrahydro-1H-benzo[d]azepine (E6) (150 mg, 0.5 mmol) was stirred in dichloromethane (5 ml) with diethylaminomethyl polystyrene (3.2 mmol/g, 625 mg, 2 mmol).

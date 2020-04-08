@@ -1,0 +1,80 @@
+PHASESEPARATION.
+WAIT for three days at RT; ADD ethyl acetate; WASH with water.
+ADD 3-Bromo-2-fluoroaniline (10 g, 52.63 mmol); ADD DCM (100 mL) under nitrogen.
+SETTEMPERATURE rt; CONCENTRATE.
+PURIFY; YIELD benzyl 3-(formamido(7-((2-(trimethylsilyl)ethoxy)methyl)-7H-pyrrolo[2,3-d]pyrimidin-4-yl)methyl)piperidine-1-carboxylate (2.2 g, 69%).
+OTHERLANGUAGE.
+CONCENTRATE; ADD MeOH; PURIFY.
+MAKESOLUTION with methyl 1H-indazole-6-carboxylate (865 mg, 4.91 mmol) and N,N-dimethylformamide (12 mL); ADD SLN; ADD potassium hydroxide (840 mg, 3.05 mmol); ADD iodine (1.54 g, 5.9 mmol).
+PURIFY; COLLECTLAYER organic; PH with K2CO3 (0.5 g) to pH basic; EXTRACT with DCM (50 ml) 2 x; DRYSOLUTION over unknown; CONCENTRATE; YIELD yellow solid (101 mg, 31%).
+STIR for overnight at 90°C.
+ADD water; EXTRACT with EA 3 x; COLLECTLAYER organic; WASH with brine; DRYSOLUTION over anhydrous Na2SO4.
+NOACTION.
+SETTEMPERATURE room temperature; CONCENTRATE.
+ADD Crushed ice (40 g); PH with 40% aqueous KOH solution to pH 12.
+STIR for 10 min at 0 °C; STIR for 20 min at RT.
+FILTER keep filtrate; CONCENTRATE; PURIFY.
+WAIT for unknown at below 30°.
+MAKESOLUTION with 4-chloro-3-(2,3-dichloro-4-methoxybenzyl)-5-difluoromethoxy-1-methyl-1H-pyrazole (3.37 g, 9 mmol) and dichloromethane (45 ml); ADD SLN; SETTEMPERATURE (−78)° C; ADD 1-molar solution of boron tribromide in dichloromethane (18.1 ml, 18 mmol).
+ADD dimethylsulfoxide (15 ml); ADD Ethyl 7,8,9-trifluoro-1-hydroxymethyl-5-oxo-5H-thiazolo[3,2-a]quinoline-4-carboxylate (0.50 g); ADD triethylamine (0.40 g); STIR for 1 hour and 30 minutes at 75°C.
+PURIFY; PH with PL-HCO3 resin to pH neutral.
+NOACTION.
+MAKESOLUTION with obtained residue (40 mg) and DCM (2.0 ml); ADD SLN; ADD trifluoroacetic acid (500 μl) at 0 °C; STIR for 2 hours at same temperature.
+FOLLOWOTHERPROCEDURE.
+COLLECTLAYER aqueous; EXTRACT with dichloromethane 3 x; COLLECTLAYER organic; WASH with saturated aqueous sodium bicarbonate; WASH with brine.
+ADD (7-Fluoro-2-oxo-1,5-naphthyridin-1(2H)-yl)acetaldehyde methyl hemiacetal (200 mg, 0.8396 mmol); ADD 1,1-dimethylethyl[(3S,4R)-3-hydroxy-4-piperidinyl]carbamate (192 mg, 1 eq); ADD chloroform (10 ml); ADD MeOH (0.5 ml); STIR for 2 h under argon.
+REFLUX for 5 minutes; SETTEMPERATURE room temperature; CONCENTRATE.
+ADD water; PH with 1.0 N HCl aqueous solution to pH 3 to 4; EXTRACT with EtOAc.
+SETTEMPERATURE 0° C; WAIT for unknown; FILTER keep precipitate.
+STIR for 20 min at room temperature; ADD water; EXTRACT with dichloromethane.
+CONCENTRATE; PURIFY; YIELD compound 162.
+MAKESOLUTION with (6,7-difluoro-3-methyl-1,2-benzisoxazol-5-yl)methanol (200 mg, 1.0 mmol) and CH2Cl2 (10 mL); ADD SLN; ADD NMO (235 mg, 2.0 mmol) at 0 °C; ADD TPAP (35 mg, 0.1 mmol) at 0 °C; STIR for 2 hours at room temperature.
+MAKESOLUTION with 5-amino-2-methoxy-4-nitrobenzoic acid (5.55 g) and benzene (40 ml); ADD SLN; ADD thionyl chloride (40 ml); REFLUX for 4 hours.
+NOACTION.
+ADD DCM (1-2 mL); ADD Et2O.
+STIR for 30 minutes at 25° C; PH with 6M NaOH (0.135 L) to pH 9.
+MAKESOLUTION with (pyridin-2-yl)methanol (0.724 ml) and dichloromethane (40 ml); ADD SLN; ADD Triphenylphosphine (2.95 g) at 0 °C; ADD carbon tetrabromide (3.73 g) at 0 °C; STIR for 1.5 hr at same temperature.
+INVALIDACTION.
+CONCENTRATE; PURIFY; YIELD 2-(5-(3,5-dichlorophenyl)-5-(trifluoromethyl)-4,5-dihydroisoxazol-3-yl)-N-(2-oxo-2-(2,2,2-trifluoroethylamino)ethyl)thieno[2,3-b]pyridine-5-carboxamide (50 mg, 34.78%).
+SETTEMPERATURE ambient temperature; ADD H2O (250 mL).
+ADD 4-(1-{2-fluoro-1-[(3S)-pyrrolidin-3-yl]ethyl}-1H-pyrazol-4-yl)-7-{[2-(trimethylsilyl)ethoxy]methyl}-7H-pyrrolo[2,3-d]pyrimidine (25 mg, 0.058 mmol); ADD DIPEA (2.0E1 μL, 0.12 mmol); ADD NMP (0.2 mL).
+STIR for 1.5 hours; MAKESOLUTION with 3-amino-4-{[3-(dimethylamino)propyl]amino}-N-methylbenzamide (1.653 g) and chloroform (9 ml); ADD SLN.
+INVALIDACTION.
+INVALIDACTION.
+STIR for 1 hour at room temperature; ADD methanolic HCl.
+STIR for 30 min at 0°C; SETTEMPERATURE ambient temperature.
+COLLECTLAYER aqueous; PH with 1N HCl (8 mL) to pH 3.
+SETTEMPERATURE 0 °C; MAKESOLUTION with tert-Butyl 4-oxopiperidine-1-carboxylate (4.98 g) and dichloromethane (20 mL); STIR for 1 hour at room temperature.
+STIR for 1 hr at room temperature; PH with 1N hydrochloric acid to pH neutral; EXTRACT with ethyl acetate.
+NOACTION.
+ADD THF (64 ml); ADD methanol (24 ml); ADD compound obtained in Example 149-1 (396 mg, 0.696 mmol); ADD 2.5% potassium carbonate aqueous solution (36 ml); STIR for 6 hours at room temperature.
+STIR for 15 min at 70° C; SETTEMPERATURE r.t..
+SETTEMPERATURE 110°C.
+FOLLOWOTHERPROCEDURE.
+MAKESOLUTION with methyl ester of 4-methyl-3-cyclohexene-1-carboxylic acid (100 g) and dry tetrahydrofuran (20 ml); ADD SLN at 0 °C.
+NOACTION.
+WAIT for overnight.
+SETTEMPERATURE room temperature; STIR for overnight at room temperature.
+ADD Water; PH with 2N hydrochloric acid to pH neutral; EXTRACT with ethyl acetate.
+FOLLOWOTHERPROCEDURE.
+ADD ice water; WASH with diethyl ether; PH with 5 M aqueous solution of sodium hydroxide to pH neutral; EXTRACT with ethyl acetate 2 x.
+MAKESOLUTION with 2-[(3,6-dichloro-4-pyridazinyl)oxy]ethanol (15.46 g, 0.0703 mol) and dry 1,4-dioxane (1.2 L); ADD SLN; ADD lithium hydride (2.3 g, 0.28 mol); STIR for 1 hour at room temperature under argon; STIR for overnight at 110° C.
+ADD 2M dimethyl amine solution in THF (5 mL); ADD 2,8-Dimethyl-5-((2-(pyridin-4-yl)oxiran-2-yl)methyl)-2,3,4,5-tetrahydro-1H-pyrido[4,3-b]indole (100 mg, 0.3 mmol); STIR for overnight at 60° C.
+STIR for 48 hours at room temperature.
+MAKESOLUTION with 6-(3-fluoro-4-methoxyphenyl)-5-(4-methoxyphenyl)-2H-pyridazin-3-one (150 mg, 0.46 mmol) and N,N-dimethylformamide (1.5 ml); ADD SLN; ADD potassium carbonate (317.6 mg); ADD ethyl iodide (179.2 mg); STIR for 3 hours at 70° C.
+FOLLOWOTHERPROCEDURE.
+STIR for 4 hrs at −70° C; SETTEMPERATURE room temperature.
+PH with NaOH solution to pH 9; PHASESEPARATION.
+FOLLOWOTHERPROCEDURE.
+NOACTION.
+STIR for 60 minutes at same temperature; SETTEMPERATURE room temperature.
+COLLECTLAYER aqueous; EXTRACT with ethyl acetate (100 ml); COLLECTLAYER organic; WASH with water (100 ml) 3 x; WASH with saturated aqueous sodium chloride (100 ml); DRYSOLUTION over MgSO4; FILTER keep filtrate; CONCENTRATE; YIELD oily residue (3.9 g).
+NOACTION.
+WAIT for 20 minutes.
+ADD 3-allyloxy-4-methoxynitrobenzene over 30 minute; STIR for 3 hours at 95° C.
+YIELD title product (20.64 g, 84%).
+ADD water (200 ml); PH with KOH pellets to pH neutral; EXTRACT with CH2Cl2 (100 ml) 3 x.
+SETTEMPERATURE room temperature; FILTER keep precipitate; WASH with cold triethyl orthoformate; WASH with heptane; DRYSOLID under vacuum.
+PH with 1N HCl to pH ˜2.
+STIR for overnight at room temperature; QUENCH with saturated aqueous NH4Cl solution.
+ADD 3-Cyclobutyl-7-(piperidin-4-yloxy)-2,3,4,5-tetrahydro-1H-benzo[d]azepine (150 mg, 0.5 mmol); ADD dichloromethane (5 ml); ADD diethylaminomethyl polystyrene ‌(3.2 mmol/g) (625 mg, 2 mmol).

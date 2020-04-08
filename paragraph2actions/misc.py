@@ -1,0 +1,34 @@
+from typing import List
+
+import attr
+
+from .action_string_converter import ActionStringConverter
+from .actions import Action
+
+
+@attr.s(auto_attribs=True)
+class TextWithActions:
+    """
+    Sentence (or paragraph) and its corresponding actions.
+    """
+    text: str
+    actions: List[Action]
+
+
+def load_samples(text_file: str, actions_file: str, converter: ActionStringConverter) -> List[TextWithActions]:
+    """
+    Loads samples of sentences with corresponding actions from files.
+    Sentences and actions are loaded from different files, which corresponds to the format of OpenNMT.
+
+    Args:
+        text_file: where to load the original text from
+        actions_file: where to load the actions from
+        converter: how to convert from the string representation to the actions
+    """
+
+    with open(text_file, 'rt') as f_sents, open(actions_file, 'rt') as f_actns:
+        sentences = [line.strip() for line in f_sents]
+        actions_lists = [converter.string_to_actions(line.strip()) for line in f_actns]
+
+    assert len(sentences) == len(actions_lists)
+    return [TextWithActions(sentence, actions) for sentence, actions in zip(sentences, actions_lists)]
