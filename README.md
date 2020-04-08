@@ -1,14 +1,40 @@
 # Extraction of actions from experimental procedures
 
 This repository contains the code for [Automated Extraction of Chemical Synthesis Actions from Experimental Procedures](https://dx.doi.org/10.26434/chemrxiv.11448177).
-In particular, it contains the following:
+
+- [Overview](#overview)
+- [System Requirements](#system-requirements)
+- [Installation Guide](#installation-guide)
+- [Training the transformer model for action extraction](#training-the-transformer-model-for-action-extraction)
+- [Data augmentation example](#data-augmentation)
+- [Action post-processing example](#action-post-processing)
+
+# Overview
+
+This repository contains code to extract actions from experimental procedures. In particular, it contains the following:
 * Definition and handling of synthesis actions
 * Code for data augmentation
 * Training and usage of a transformer-based model
 
-A trained model can be freely used online at https://rxn.res.ibm.com or with the Python wrapper available [here](https://github.com/rxn4chemistry/rxn4chemistry) .
+A trained model can be freely used online at https://rxn.res.ibm.com or with the Python wrapper available [here](https://github.com/rxn4chemistry/rxn4chemistry).
 
-## Installation
+# System Requirements
+
+## Hardware requirements
+The code can run on any standard computer.
+It is recommended to run the training scripts in a GPU-enabled environment.
+
+## Software requirements
+### OS Requirements
+This package is supported for *macOS* and *Linux*. The package has been tested on the following systems:
++ macOS: Catalina (10.15.4)
++ Linux: Ubuntu 16.04.3
+
+### Python
+A Python version of 3.6 or greater is recommended.
+The Python package dependencies are listed in [`requirements.txt`](requirements.txt).
+
+# Installation guide
 
 To use the package, we recommended to create a dedicated Conda environment:
 ```bash
@@ -20,12 +46,13 @@ Then, the following command will install the package and its dependencies:
 ```bash
 pip install -e .
 ```
+The installation should not take more than a few minutes.
 
-## Transformer model for action extraction
+# Training the transformer model for action extraction
 
 This section explains how to train the translation model for action extraction.
 
-### General setup
+## General setup
 
 For simplicity, set the following environment variables:
 ```bash
@@ -38,7 +65,7 @@ We assume that `DATA_DIR` contains the following files:
 src-test.txt    src-train.txt   src-valid.txt   tgt-test.txt    tgt-train.txt   tgt-valid.txt
 ```
 
-### Subword tokenization
+## Subword tokenization
 
 We train a SentencePiece tokenizer on the train split:
 ```bash
@@ -59,7 +86,7 @@ python $CODE_DIR/paragraph2actions/scripts/tokenize_with_sentencepiece.py \
   -m $DATA_DIR/sp_model.model -i $DATA_DIR/tgt-valid.txt -o $DATA_DIR/tok-tgt-valid.txt
 ```
 
-### Training
+## Training
 
 Convert the data to the format required by OpenNMT:
 ```bash
@@ -84,8 +111,10 @@ onmt_train \
   -global_attention general -global_attention_function softmax -self_attn_type scaled-dot \
   -heads 8 -transformer_ff 2048
 ```
+Training the model can take up to a few days in a GPU-enabled environment.
+For testing purposes in a CPU-only environment, the same command with `-save_checkpoint_steps 10` and `-train_steps 10` will take only a few minutes.
 
-### Finetuning
+## Finetuning
 
 For finetuning, we first generate appropriate data in OpenNMT format by following the steps described above.
 We assume that the preprocessed data is then available as `$DATA_DIR/preprocessed_finetuning `
@@ -107,7 +136,7 @@ onmt_train \
   -heads 8 -transformer_ff 2048
 ```
 
-### Extraction of actions with the transformer model
+## Extraction of actions with the transformer model
 
 Experimental procedure sentences can then be translated to action sequences with the following:
 ```bash
@@ -118,7 +147,7 @@ python $CODE_DIR/paragraph2actions/scripts/translate_actions.py \
   -t $MODEL -p $DATA_DIR/sp_model.model -s $DATA_DIR/src-test.txt -o $DATA_DIR/pred.txt
 ```
 
-### Evaluation
+## Evaluation
 
 To print the metrics on the predictions, the following command can be used:
 ```bash
@@ -126,7 +155,7 @@ python $CODE_DIR/paragraph2actions/scripts/calculate_metrics.py -g $DATA_DIR/tgt
 ```
 
 
-## Data augmentation
+# Data augmentation
 
 The following code illustrate how to augment the data for existing sentences and associated action sequences.
 
@@ -180,7 +209,7 @@ STIR for overnight at room temperature.
 [...]
 ```
 
-## Action post-processing
+# Action post-processing
 
 The following code illustrate the postprocessing of actions.
 
