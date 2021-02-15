@@ -44,7 +44,9 @@ class CompoundNameAugmenter(SubstitutionAugmenter):
             if not self.random_draw_passes() or cpd_name not in sample.text:
                 continue
             new_name = self.draw_value()
-            sample.text = self.replace_in_text(text=sample.text, compound=cpd_name, new_name=new_name)
+            sample.text = self.replace_in_text(
+                text=sample.text, compound=cpd_name, new_name=new_name
+            )
             for c in cpd_dict[cpd_name]:
                 c.name = new_name
 

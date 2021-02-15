@@ -12,10 +12,12 @@ class SentencePostprocessor:
     * Remove unknown actions?
     """
 
-    def __init__(self,
-                 consider_straightforward_empty_sentences_as_noaction: bool = True,
-                 remove_sentences_with_invalid_actions: bool = True,
-                 remove_empty_sentences: bool = True):
+    def __init__(
+        self,
+        consider_straightforward_empty_sentences_as_noaction: bool = True,
+        remove_sentences_with_invalid_actions: bool = True,
+        remove_empty_sentences: bool = True
+    ):
         """
         Args:
             consider_straightforward_empty_sentences_as_noaction: For simple sentences with no action, add "NoAction" and keep them
@@ -27,8 +29,10 @@ class SentencePostprocessor:
         self.remove_sentences_with_invalid_actions = remove_sentences_with_invalid_actions
         self.remove_empty_sentences = remove_empty_sentences
 
-        self.no_action_keywords = ['MS', 'found:', 'Found:', 'ppm', 'ESI', 'NMR', 'm/z', 'retention', 'Retention',
-                                   'HPLC', 'TLC', 'M+H', 'M+1', 'mp:', 'Mp:']
+        self.no_action_keywords = [
+            'MS', 'found:', 'Found:', 'ppm', 'ESI', 'NMR', 'm/z', 'retention', 'Retention', 'HPLC',
+            'TLC', 'M+H', 'M+1', 'mp:', 'Mp:'
+        ]
         self.no_action_length = 30
 
     def process(self, sentence: Sentence) -> Optional[Sentence]:
@@ -47,7 +51,8 @@ class SentencePostprocessor:
                 return None
 
         if self.consider_straightforward_empty_sentences_as_noaction:
-            if len(sentence.actions) == 0 and self.empty_sentence_is_straightforward(sentence.text):
+            if len(sentence.actions
+                   ) == 0 and self.empty_sentence_is_straightforward(sentence.text):
                 return replace_actions([NoAction()])
 
         if self.remove_empty_sentences and len(sentence.actions) == 0:

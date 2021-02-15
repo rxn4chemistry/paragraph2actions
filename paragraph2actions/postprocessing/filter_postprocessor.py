@@ -26,17 +26,26 @@ class FilterPostprocessor(ActionPostprocessor):
 
         return actions
 
-    def update_based_on_previous_action(self, filter_action: Action, previous_action: Action) -> None:
-        self.update_based_on_other_action(filter_action, previous_action,
-                                          self.pre_filtrate_classes, self.pre_precipitate_classes)
+    def update_based_on_previous_action(
+        self, filter_action: Action, previous_action: Action
+    ) -> None:
+        self.update_based_on_other_action(
+            filter_action, previous_action, self.pre_filtrate_classes, self.pre_precipitate_classes
+        )
 
-    def update_based_on_following_action(self, filter_action: Action, following_action: Action) -> None:
-        self.update_based_on_other_action(filter_action, following_action,
-                                          self.post_filtrate_classes, self.post_precipitate_classes)
+    def update_based_on_following_action(
+        self, filter_action: Action, following_action: Action
+    ) -> None:
+        self.update_based_on_other_action(
+            filter_action, following_action, self.post_filtrate_classes,
+            self.post_precipitate_classes
+        )
 
-    def update_based_on_other_action(self, filter_action: Action, other_action: Action,
-                                     filtrate_related_classes: List[Type[Action]],
-                                     precipitate_related_classes: List[Type[Action]]) -> None:
+    def update_based_on_other_action(
+        self, filter_action: Action, other_action: Action,
+        filtrate_related_classes: List[Type[Action]],
+        precipitate_related_classes: List[Type[Action]]
+    ) -> None:
         if not isinstance(filter_action, Filter) or filter_action.phase_to_keep is not None:
             return
 

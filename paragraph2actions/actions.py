@@ -101,7 +101,9 @@ class Filter(Action):
     phase_to_keep: Optional[str] = None
 
     def __attrs_post_init__(self):
-        if self.phase_to_keep is not None and self.phase_to_keep not in ['filtrate', 'precipitate']:
+        if self.phase_to_keep is not None and self.phase_to_keep not in [
+            'filtrate', 'precipitate'
+        ]:
             raise ValueError('phase_to_keep must be equal to "filtrate" or "precipitate"')
 
 
@@ -122,7 +124,9 @@ class MakeSolution(Action):
 
     def __attrs_post_init__(self):
         if len(self.materials) < 2:
-            raise ValueError(f'MakeSolution requires at least two components (actual: {len(self.materials)}')
+            raise ValueError(
+                f'MakeSolution requires at least two components (actual: {len(self.materials)}'
+            )
 
 
 @attr.s(auto_attribs=True)

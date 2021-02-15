@@ -38,11 +38,15 @@ class Translator:
         translations = self.translate_multiple_with_scores(sentences)
         return [t[0].text for t in translations]
 
-    def translate_multiple_with_scores(self, sentences: List[str], n_best=1) -> List[List[Translation]]:
+    def translate_multiple_with_scores(self,
+                                       sentences: List[str],
+                                       n_best=1) -> List[List[Translation]]:
         onmt_opt = get_onmt_opt(translation_model=self.translation_model, n_best=n_best)
         tokenized_sentences = [self.sp.tokenize(s) for s in sentences]
 
-        translations = self.onmt_translator.translate_sentences_with_onmt(onmt_opt, tokenized_sentences)
+        translations = self.onmt_translator.translate_sentences_with_onmt(
+            onmt_opt, tokenized_sentences
+        )
 
         for translation_group in translations:
             for t in translation_group:

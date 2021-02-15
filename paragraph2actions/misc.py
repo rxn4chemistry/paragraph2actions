@@ -32,12 +32,15 @@ def load_samples(text_file: str, actions_file: str,
         actions_lists = [converter.string_to_actions(line.strip()) for line in f_actns]
 
     assert len(sentences) == len(actions_lists)
-    return [TextWithActions(sentence, actions)
-            for sentence, actions in zip(sentences, actions_lists)]
+    return [
+        TextWithActions(sentence, actions) for sentence, actions in zip(sentences, actions_lists)
+    ]
 
 
-def save_samples(samples: Iterable[TextWithActions], converter: ActionStringConverter,
-                 text_file: str, actions_file: str) -> None:
+def save_samples(
+    samples: Iterable[TextWithActions], converter: ActionStringConverter, text_file: str,
+    actions_file: str
+) -> None:
     """
     Saves samples of sentences with corresponding actions to files.
     Sentences and actions are saved to different files, which corresponds to the input required by OpenNMT.
