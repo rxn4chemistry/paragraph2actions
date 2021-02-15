@@ -37,7 +37,9 @@ def full_sentence_accuracy(truth: List[str], pred: List[str]) -> float:
     return correct_count / len(truth)
 
 
-def action_string_validity(preds: List[str], converter: Optional[ActionStringConverter] = None) -> float:
+def action_string_validity(
+    preds: List[str], converter: Optional[ActionStringConverter] = None
+) -> float:
     """
     Calculate the fraction of sentences that correspond to valid action strings.
 
@@ -113,6 +115,8 @@ def partial_accuracy(truth: List[str], pred: List[str], threshold: float) -> flo
         threshold: threshold above which to consider it as a partial match, between 0 and 1
     """
     assert len(truth) == len(pred)
-    match_count = sum(1 for t, p in zip(truth, pred)
-                      if textdistance.levenshtein.normalized_similarity(t, p) >= threshold)
+    match_count = sum(
+        1 for t, p in zip(truth, pred)
+        if textdistance.levenshtein.normalized_similarity(t, p) >= threshold
+    )
     return match_count / len(truth)

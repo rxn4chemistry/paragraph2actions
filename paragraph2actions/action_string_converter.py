@@ -9,6 +9,7 @@ from .utils import get_all_action_types
 
 
 class ActionStringConversionError(ValueError):
+
     def __init__(self, action_string: str):
         super().__init__(f'Conversion from string to actions failed for "{action_string}".')
 
@@ -20,7 +21,9 @@ class ActionStringConverter(ABC):
 
     def __init__(self):
         for action_name in get_all_action_types():
-            assert self.action_type_supported(action_name), f'Action "{action_name}" is not supported by the converter'
+            assert self.action_type_supported(
+                action_name
+            ), f'Action "{action_name}" is not supported by the converter'
 
     @abstractmethod
     def action_type_supported(self, action_type: str) -> bool:
@@ -68,7 +71,9 @@ class ReadableConverter(ActionStringConverter):
     """
 
     def action_type_supported(self, action_type: str) -> bool:
-        return self._get_from_method(action_type) is not None and self._get_to_method(action_type) is not None
+        return self._get_from_method(action_type) is not None and self._get_to_method(
+            action_type
+        ) is not None
 
     def actions_to_string(self, actions: List[Action]) -> str:
         return '; '.join(self.action_to_string(a) for a in actions) + '.'
@@ -127,7 +132,9 @@ class ReadableConverter(ActionStringConverter):
         method_name = '_to_' + action_type.lower()
         method = getattr(self, method_name, None)
         if method is None:
-            raise ValueError(f'Cannot find method to convert "{action_type}" action string to an actual action')
+            raise ValueError(
+                f'Cannot find method to convert "{action_type}" action string to an actual action'
+            )
         return method
 
     def _from_add(self, action: Add) -> str:
@@ -149,8 +156,13 @@ class ReadableConverter(ActionStringConverter):
         dropwise = ' dropwise' in remaining
         remaining = remaining.replace(' dropwise', '')
         chemical = self._get_chemical(remaining, 'ADD ')
-        return Add(material=chemical, dropwise=dropwise,
-                   temperature=temperature, atmosphere=atmosphere, duration=duration)
+        return Add(
+            material=chemical,
+            dropwise=dropwise,
+            temperature=temperature,
+            atmosphere=atmosphere,
+            duration=duration
+        )
 
     def _from_invalidaction(self, action: InvalidAction) -> str:
         s = f'{self._uppercase_action_name(action)}'
@@ -444,7 +456,8 @@ class ReadableConverter(ActionStringConverter):
     def _to_noaction(self, action_text: str) -> Action:
         return NoAction()
 
-    def _get_property_from_split(self, sentence: str, splitting_word: str) -> Tuple[str, Optional[str]]:
+    def _get_property_from_split(self, sentence: str,
+                                 splitting_word: str) -> Tuple[str, Optional[str]]:
         """
         Gets an optional property following a given splitting word.
         Returns:

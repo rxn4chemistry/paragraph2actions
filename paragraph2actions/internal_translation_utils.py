@@ -90,13 +90,23 @@ class RawTranslator:
 
         r = []
         for score_list, translation_list in zip(scores, translations):
-            r.append([Translation(text=t, score=s.item()) for s, t in zip(score_list, translation_list)])
+            r.append(
+                [
+                    Translation(text=t, score=s.item())
+                    for s, t in zip(score_list, translation_list)
+                ]
+            )
 
         return r
 
 
-def get_onmt_opt(translation_model: Iterable[str], src_file: Optional[str] = None, output_file: Optional[str] = None,
-                 n_best: int = 1, log_probs: bool = False):
+def get_onmt_opt(
+    translation_model: Iterable[str],
+    src_file: Optional[str] = None,
+    output_file: Optional[str] = None,
+    n_best: int = 1,
+    log_probs: bool = False
+):
     src = src_file if src_file is not None else '(unused)'
     output = output_file if output_file is not None else '(unused)'
     args_str = f'--model {" ".join(translation_model)} --src {src} --output {output}'

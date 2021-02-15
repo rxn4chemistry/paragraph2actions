@@ -14,4 +14,6 @@ class TemperatureAugmenter(ActionAttributeAugmenter):
             probability: probability with which to switch the compound name
             temperatures: list of temperatures to use for substitution
         """
-        super().__init__(probability=probability, values=temperatures, attribute_name='temperature')
+        super().__init__(
+            probability=probability, values=temperatures, attribute_name='temperature'
+        )

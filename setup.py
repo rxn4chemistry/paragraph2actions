@@ -10,9 +10,10 @@ from setuptools import setup, find_packages
 
 # Get the version from rxn_actions/__init__.py
 # Adapted from https://stackoverflow.com/a/39671214
-__version__ = re.search(r'__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
-                        io.open('paragraph2actions/__init__.py', encoding='utf_8_sig').read()
-                        ).group(1)
+__version__ = re.search(
+    r'__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
+    io.open('paragraph2actions/__init__.py', encoding='utf_8_sig').read()
+).group(1)
 
 this_directory = path.abspath(path.dirname(__file__))
 with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
