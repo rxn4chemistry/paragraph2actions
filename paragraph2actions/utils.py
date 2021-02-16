@@ -1,6 +1,6 @@
 import inspect
 import itertools
-from typing import List, Iterable, Any, Iterator, Tuple, Sequence
+from typing import List, Iterable, Any, Iterator, Tuple, Sequence, Callable, Optional
 
 import attr
 
@@ -9,6 +9,7 @@ from .actions import __dict__ as actions_module_dict  # type: ignore
 
 temperature_attribute_names = ['temperature']
 duration_attribute_names = ['duration']
+atmosphere_attribute_names = ['atmosphere']
 
 
 def get_all_action_types() -> List[str]:
@@ -22,7 +23,7 @@ def get_all_action_types() -> List[str]:
     return actions
 
 
-def extract_chemicals(actions: Iterable[Action]) -> List[Chemical]:
+def extract_chemicals(actions: Iterable[Action], ignore_sln: bool = False) -> List[Chemical]:
     """
     Returns a list of all the chemicals present in a sequence of actions.
     """
@@ -37,7 +38,155 @@ def extract_chemicals(actions: Iterable[Action]) -> List[Chemical]:
                     if isinstance(v, Chemical):
                         chemicals.append(v)
 
+    if ignore_sln:
+        chemicals = [chemical for chemical in chemicals if chemical.name != 'SLN']
+
     return chemicals
+
+
+def _actions_with_attribute_names(actions: Iterable[Action],
+                                  attribute_names: Sequence[str]) -> List[Tuple[Action, str]]:
+    """
+    In a list of actions, looks for the ones having a given attribute names
+    (that may be set or not).
+
+    Useful for actions_with_temperatures or actions_with_durations, for
+    instance. Returns them as a list of actions paired with the name of the
+    member variable.
+    """
+    tuples: List[Tuple[Action, str]] = []
+
+    for a in actions:
+        for attribute_name in attribute_names:
+            if hasattr(a, attribute_name):
+                tuples.append((a, attribute_name))
+
+    return tuples
+
+
+def _apply_to_actions_with_attribute_names(
+    actions: Iterable[Action], attribute_names: Sequence[str], fn: Callable[[str], Optional[str]]
+) -> None:
+    """
+    Applies a function of all the duration fields present in the given actions,
+    to update their values.
+
+    Args:
+        actions: actions on which to apply fn
+        attribute_names: attribute names to apply to
+        fn: function to apply to the durations, basically doing
+            `action.<attribute_name> = fn(action.<attribute_name>)`
+    """
+    actions_and_attributes = _actions_with_attribute_names(actions, attribute_names)
+
+    for a, attribute_name in actions_and_attributes:
+        value = getattr(a, attribute_name, None)
+
+        # do nothing if there is no value (f.i. optional variables)
+        if value is None:
+            continue
+
+        # set the new value
+        new_value = fn(value)
+        setattr(a, attribute_name, new_value)
+
+
+def apply_to_temperatures(actions: Iterable[Action], fn: Callable[[str], str]) -> None:
+    """
+    Applies a function of all the temperature fields present in the given
+    actions, to update their values.
+
+    Args:
+        actions: actions on which to apply fn
+        fn: function to apply to the temperatures, basically doing
+            `action.temperature = fn(action.temperature)`
+    """
+    _apply_to_actions_with_attribute_names(actions, temperature_attribute_names, fn)
+
+
+def apply_to_durations(actions: Iterable[Action], fn: Callable[[str], str]) -> None:
+    """
+    Applies a function of all the duration fields present in the given actions,
+    to update their values.
+
+    Args:
+        actions: actions on which to apply fn
+        fn: function to apply to the durations, basically doing
+            `action.duration = fn(action.duration)`
+    """
+    _apply_to_actions_with_attribute_names(actions, duration_attribute_names, fn)
+
+
+def apply_to_atmospheres(actions: Iterable[Action], fn: Callable[[str], Optional[str]]) -> None:
+    """
+    Applies a function of all the atmosphere fields present in the given actions,
+    to update their values.
+
+    Args:
+        actions: actions on which to apply fn
+        fn: function to apply to the atmospheres, basically doing
+            `action.atmosphere = fn(action.atmosphere)`
+    """
+    _apply_to_actions_with_attribute_names(actions, atmosphere_attribute_names, fn)
+
+
+def actions_with_temperatures(actions: Iterable[Action]) -> List[Tuple[Action, str]]:
+    """
+    In a list of actions, looks for the ones having a temperature (that may be
+    set or not).
+
+    Returns them as a list of actions paired with the name of the member
+    variable corresponding to the temperature.
+    """
+
+    return _actions_with_attribute_names(actions, temperature_attribute_names)
+
+
+def actions_with_durations(actions: Iterable[Action]) -> List[Tuple[Action, str]]:
+    """
+    In a list of actions, looks for the ones having a duration (that may be
+    set or not).
+
+    Returns them as a list of actions paired with the name of the member
+    variable corresponding to the duration.
+    """
+
+    return _actions_with_attribute_names(actions, duration_attribute_names)
+
+
+def extract_temperatures(actions: Iterable[Action]) -> List[str]:
+    """
+    Returns a list of all the temperatures present in a sequence of actions.
+    """
+    temperatures = []
+
+    for action, attribute_name in actions_with_temperatures(actions):
+        value = getattr(action, attribute_name)
+        if value is not None:
+            temperatures.append(value)
+
+    return temperatures
+
+
+def extract_durations(actions: Iterable[Action]) -> List[str]:
+    """
+    Returns a list of all the durations present in a sequence of actions.
+    """
+    durations = []
+
+    for action, attribute_name in actions_with_durations(actions):
+        value = getattr(action, attribute_name)
+        if value is not None:
+            durations.append(value)
+
+    return durations
+
+
+def remove_quantities(actions: Iterable[Action]) -> None:
+    """Remove the quantities of a list of actions in-place."""
+    chemicals = extract_chemicals(actions)
+    for chemical in chemicals:
+        chemical.quantity = []
 
 
 def pairwise(s: List[Any]) -> Iterator[Tuple[Any, Any]]:

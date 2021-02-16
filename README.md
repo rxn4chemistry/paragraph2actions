@@ -1,6 +1,6 @@
 # Extraction of actions from experimental procedures
 
-This repository contains the code for [Automated Extraction of Chemical Synthesis Actions from Experimental Procedures](https://dx.doi.org/10.26434/chemrxiv.11448177).
+This repository contains the code for [Automated Extraction of Chemical Synthesis Actions from Experimental Procedures](https://doi.org/10.1038/s41467-020-17266-6).
 
 - [Overview](#overview)
 - [System Requirements](#system-requirements)
