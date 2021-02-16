@@ -70,21 +70,40 @@ class ReadableConverter(ActionStringConverter):
     > FILTERFILTRATE; EXTRACT with chloroform (quantity unspecified).
     """
 
+    def __init__(self, separator: str = '; ', end_mark: str = '.'):
+        """
+        Args:
+            separator: string that will be inserted between the action strings.
+            end_mark: string that will be added at the end of the action string.
+        """
+        super().__init__()
+
+        self.separator = separator
+        self.end_mark = end_mark
+
+        assert len(self.separator) > 1
+        # If a compound name / duration contains the separator, the string
+        # will be modified by adding a no-break space between the first and
+        # second character.
+        self.separator_substitute = (self.separator[:1] + '\u200C' + self.separator[1:])
+
     def action_type_supported(self, action_type: str) -> bool:
-        return self._get_from_method(action_type) is not None and self._get_to_method(
-            action_type
-        ) is not None
+        from_method_exists = self._get_from_method(action_type) is not None
+        to_method_exists = self._get_to_method(action_type) is not None
+        return from_method_exists and to_method_exists
 
     def actions_to_string(self, actions: List[Action]) -> str:
-        return '; '.join(self.action_to_string(a) for a in actions) + '.'
+        action_strings = (self.action_to_string(a) for a in actions)
+        return self.separator.join(action_strings) + self.end_mark
 
     def string_to_actions(self, action_string: str) -> List[Action]:
         try:
-            # remove last dot
-            action_string = action_string[:-1]
+            if self.end_mark:
+                # remove last dot (or other end mark)
+                action_string = action_string[:-len(self.end_mark)]
             if not action_string:
                 return []
-            action_strings = action_string.split('; ')
+            action_strings = action_string.split(self.separator)
             return [self.string_to_action(action_string) for action_string in action_strings]
         except Exception as e:
             raise ActionStringConversionError(action_string) from e
@@ -92,15 +111,15 @@ class ReadableConverter(ActionStringConverter):
     def action_to_string(self, action: Action) -> str:
         action_string = self._get_from_method(action.action_name)(action)
 
-        # replace normal space by no-break space if there is '; ' in the string, as it would
-        # lead to an error in the back-conversion
-        action_string = action_string.replace('; ', ';\u200C ')
+        # replace normal space by no-break space if there is '; ' in the string,
+        # as it would lead to an error in the back-conversion
+        action_string = action_string.replace(self.separator, self.separator_substitute)
 
         return action_string
 
     def string_to_action(self, action_string: str) -> Action:
         # replace no-break space (probably introduced in action_to_string) by normal space
-        action_string = action_string.replace(';\u200C ', '; ')
+        action_string = action_string.replace(self.separator_substitute, self.separator)
 
         action_type = action_string.split(' ', 1)[0]
         return self._get_to_method(action_type)(action_string)
@@ -112,7 +131,8 @@ class ReadableConverter(ActionStringConverter):
         """
         Convert a chemical to a string
         """
-        # if there is a parenthesis after a space, it may mess up for the back-conversion of the quantities
+        # if there is a parenthesis after a space, it may mess up for the
+        # back-conversion of the quantities
         compound_name = c.name.replace(' (', ' \u200C(')
 
         if not c.quantity:
@@ -300,7 +320,10 @@ class ReadableConverter(ActionStringConverter):
         return Partition(material_1=m1, material_2=m2)
 
     def _from_ph(self, action: PH) -> str:
-        s = f'{self._uppercase_action_name(action)} with {self._chemical_to_string(action.material)}'
+        s = (
+            f'{self._uppercase_action_name(action)} '
+            f'with {self._chemical_to_string(action.material)}'
+        )
         if action.ph:
             s += f' to pH {action.ph}'
         if action.dropwise:
@@ -331,7 +354,10 @@ class ReadableConverter(ActionStringConverter):
         return Purify()
 
     def _from_quench(self, action: Quench) -> str:
-        s = f'{self._uppercase_action_name(action)} with {self._chemical_to_string(action.material)}'
+        s = (
+            f'{self._uppercase_action_name(action)} '
+            f'with {self._chemical_to_string(action.material)}'
+        )
         if action.dropwise:
             s += ' dropwise'
         if action.temperature:
@@ -346,7 +372,10 @@ class ReadableConverter(ActionStringConverter):
         return Quench(material=material, dropwise=dropwise, temperature=temperature)
 
     def _from_recrystallize(self, action: Recrystallize) -> str:
-        return f'{self._uppercase_action_name(action)} from {self._chemical_to_string(action.solvent)}'
+        return (
+            f'{self._uppercase_action_name(action)} '
+            f'from {self._chemical_to_string(action.solvent)}'
+        )
 
     def _to_recrystallize(self, action_text: str) -> Action:
         chemical = self._get_chemical(action_text, 'RECRYSTALLIZE from ')
@@ -427,7 +456,10 @@ class ReadableConverter(ActionStringConverter):
         return Wait(duration=duration, temperature=temperature)
 
     def _from_wash(self, action: Wash) -> str:
-        s = f'{self._uppercase_action_name(action)} with {self._chemical_to_string(action.material)}'
+        s = (
+            f'{self._uppercase_action_name(action)} '
+            f'with {self._chemical_to_string(action.material)}'
+        )
         if action.repetitions != 1:
             s += f' {action.repetitions} x'
         return s
@@ -486,8 +518,8 @@ class ReadableConverter(ActionStringConverter):
             4-butyloctane (5 ml)
             DMF
 
-        If prefix is given, it will remove it from the original sentence (useful for the action names in the beginning
-        of the string.
+        If prefix is given, it will remove it from the original sentence
+        (useful for the action names in the beginning of the string).
         """
         if prefix:
             sentence = sentence.replace(prefix, '')

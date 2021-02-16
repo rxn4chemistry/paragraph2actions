@@ -22,7 +22,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 setup(
     name='paragraph2actions',
     version=__version__,
-    url='https://to.do',
+    url='https://rxn.res.ibm.com',
     author='IBM RXN',
     author_email='noreply@zurich.ibm.com',
     description='Convert experimental procedures to sequences of actions',
