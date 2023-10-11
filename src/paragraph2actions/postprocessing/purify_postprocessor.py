@@ -1,8 +1,8 @@
 import copy
 from typing import List
 
-from .action_postprocessor import ActionPostprocessor
 from ..actions import Action, Purify
+from .action_postprocessor import ActionPostprocessor
 
 
 class RemovePurifyPostprocessor(ActionPostprocessor):

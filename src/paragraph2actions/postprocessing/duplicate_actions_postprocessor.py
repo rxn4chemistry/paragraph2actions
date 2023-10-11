@@ -1,8 +1,8 @@
 import copy
 from typing import List
 
+from ..actions import Action, Microwave, Reflux, Stir
 from .action_postprocessor import ActionPostprocessor
-from ..actions import Action, Stir, Reflux, Microwave
 
 
 class DuplicateActionsPostprocessor(ActionPostprocessor):

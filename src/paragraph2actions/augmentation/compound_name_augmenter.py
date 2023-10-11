@@ -1,12 +1,13 @@
 import copy
 import re
 from collections import defaultdict
-from typing import List, Dict
+from typing import Dict, List
 
-from .substitution_augmenter import SubstitutionAugmenter
+from paragraph2actions.misc import TextWithActions
+
 from ..actions import Chemical
 from ..utils import extract_chemicals
-from paragraph2actions.misc import TextWithActions
+from .substitution_augmenter import SubstitutionAugmenter
 
 
 class CompoundNameAugmenter(SubstitutionAugmenter):
@@ -36,7 +37,9 @@ class CompoundNameAugmenter(SubstitutionAugmenter):
         # remove compound names that are comprised in others; with this, if both '3-ethyltoluene' and
         # '2-bromo-3-ethyltoluene' are present as compounds, we will never substitute the short one.
         for chemical_name in list(cpd_dict.keys()):
-            if any(chemical_name in cpd for cpd in cpd_dict.keys() if chemical_name != cpd):
+            if any(
+                chemical_name in cpd for cpd in cpd_dict.keys() if chemical_name != cpd
+            ):
                 cpd_dict.pop(chemical_name)
 
         # For each chemical name, try substitution
@@ -54,5 +57,5 @@ class CompoundNameAugmenter(SubstitutionAugmenter):
 
     def replace_in_text(self, text: str, compound: str, new_name: str) -> str:
         # We replace only at word boundaries, to avoid things like 'H2SO4 -> waterSO4' when replacing 'H2' by 'water'
-        pattern = re.compile(rf'\b{re.escape(compound)}\b')
+        pattern = re.compile(rf"\b{re.escape(compound)}\b")
         return pattern.sub(new_name, text)

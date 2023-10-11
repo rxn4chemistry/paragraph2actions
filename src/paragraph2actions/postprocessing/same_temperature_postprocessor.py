@@ -1,9 +1,9 @@
 import copy
-from typing import List, Optional, Callable
+from typing import Callable, List, Optional
 
-from .action_postprocessor import ActionPostprocessor
 from ..actions import Action
-from ..utils import extract_temperatures, apply_to_temperatures
+from ..utils import apply_to_temperatures, extract_temperatures
+from .action_postprocessor import ActionPostprocessor
 
 
 class SameTemperaturePostprocessor(ActionPostprocessor):
@@ -13,7 +13,7 @@ class SameTemperaturePostprocessor(ActionPostprocessor):
     """
 
     def __init__(self):
-        self.same_temperature_names = {'same temperature'}
+        self.same_temperature_names = {"same temperature"}
 
     def postprocess(self, actions: List[Action]) -> List[Action]:
         actions = copy.deepcopy(actions)
@@ -37,7 +37,9 @@ class SameTemperaturePostprocessor(ActionPostprocessor):
     def get_last_temperature(self, actions: List[Action]) -> Optional[str]:
         """Get the last temperature in a list of actions"""
         temperatures = extract_temperatures(actions)
-        valid_temperatures = [t for t in temperatures if t not in self.same_temperature_names]
+        valid_temperatures = [
+            t for t in temperatures if t not in self.same_temperature_names
+        ]
         if not valid_temperatures:
             return None
         return valid_temperatures[-1]

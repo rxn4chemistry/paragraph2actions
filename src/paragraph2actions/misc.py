@@ -1,4 +1,4 @@
-from typing import List, Iterable
+from typing import Iterable, List
 
 import attr
 
@@ -11,12 +11,14 @@ class TextWithActions:
     """
     Sentence (or paragraph) and its corresponding actions.
     """
+
     text: str
     actions: List[Action]
 
 
-def load_samples(text_file: str, actions_file: str,
-                 converter: ActionStringConverter) -> List[TextWithActions]:
+def load_samples(
+    text_file: str, actions_file: str, converter: ActionStringConverter
+) -> List[TextWithActions]:
     """
     Loads samples of sentences with corresponding actions from files.
     Sentences and actions are loaded from different files, which corresponds to the format of OpenNMT.
@@ -27,19 +29,22 @@ def load_samples(text_file: str, actions_file: str,
         converter: how to convert from the string representation to the actions
     """
 
-    with open(text_file, 'rt') as f_sents, open(actions_file, 'rt') as f_actns:
+    with open(text_file, "rt") as f_sents, open(actions_file, "rt") as f_actns:
         sentences = [line.strip() for line in f_sents]
         actions_lists = [converter.string_to_actions(line.strip()) for line in f_actns]
 
     assert len(sentences) == len(actions_lists)
     return [
-        TextWithActions(sentence, actions) for sentence, actions in zip(sentences, actions_lists)
+        TextWithActions(sentence, actions)
+        for sentence, actions in zip(sentences, actions_lists)
     ]
 
 
 def save_samples(
-    samples: Iterable[TextWithActions], converter: ActionStringConverter, text_file: str,
-    actions_file: str
+    samples: Iterable[TextWithActions],
+    converter: ActionStringConverter,
+    text_file: str,
+    actions_file: str,
 ) -> None:
     """
     Saves samples of sentences with corresponding actions to files.
@@ -52,7 +57,7 @@ def save_samples(
         actions_file: where to save the actions
     """
 
-    with open(text_file, 'wt') as f_src, open(actions_file, 'wt') as f_tgt:
+    with open(text_file, "wt") as f_src, open(actions_file, "wt") as f_tgt:
         for s in samples:
-            f_src.write(f'{s.text}\n')
-            f_tgt.write(f'{converter.actions_to_string(s.actions)}\n')
+            f_src.write(f"{s.text}\n")
+            f_tgt.write(f"{converter.actions_to_string(s.actions)}\n")

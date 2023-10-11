@@ -1,6 +1,6 @@
-from typing import List, Iterable, Union
+from typing import Iterable, List, Union
 
-from .internal_translation_utils import get_onmt_opt, Translation, RawTranslator
+from .internal_translation_utils import RawTranslator, Translation, get_onmt_opt
 from .sentencepiece_tokenizer import SentencePieceTokenizer
 
 
@@ -9,7 +9,9 @@ class Translator:
     Wraps the OpenNMT translation functionality into a class.
     """
 
-    def __init__(self, translation_model: Union[str, Iterable[str]], sentencepiece_model: str):
+    def __init__(
+        self, translation_model: Union[str, Iterable[str]], sentencepiece_model: str
+    ):
         """
         Args:
             translation_model: path to the translation model file(s). If multiple are given, will be an ensemble model.
@@ -38,9 +40,9 @@ class Translator:
         translations = self.translate_multiple_with_scores(sentences)
         return [t[0].text for t in translations]
 
-    def translate_multiple_with_scores(self,
-                                       sentences: List[str],
-                                       n_best=1) -> List[List[Translation]]:
+    def translate_multiple_with_scores(
+        self, sentences: List[str], n_best=1
+    ) -> List[List[Translation]]:
         onmt_opt = get_onmt_opt(translation_model=self.translation_model, n_best=n_best)
         tokenized_sentences = [self.sp.tokenize(s) for s in sentences]
 

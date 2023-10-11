@@ -1,5 +1,5 @@
 from abc import ABC
-from typing import Optional, List
+from typing import List, Optional
 
 import attr
 
@@ -12,6 +12,7 @@ class Chemical:
     Quantities are optional, and several may be given simultaneously (f.i. ['1 mmol', '2.0 g', '2.0 mL']'), therefore
     they are saved as a list.
     """
+
     name: str
     quantity: List[str] = attr.Factory(list)
 
@@ -32,7 +33,7 @@ class Action(ABC):
 
 @attr.s(auto_attribs=True)
 class InvalidAction(Action):
-    error: str = ''
+    error: str = ""
 
 
 @attr.s(auto_attribs=True)
@@ -50,10 +51,11 @@ class CollectLayer(Action):
     Attributes:
         layer: which layer to keep ("aqueous" or "organic")
     """
+
     layer: str
 
     def __attrs_post_init__(self):
-        if self.layer not in ['aqueous', 'organic']:
+        if self.layer not in ["aqueous", "organic"]:
             raise ValueError('layer must be equal to "aqueous" or "organic"')
 
 
@@ -76,6 +78,7 @@ class DrySolid(Action):
     For drying on air, the atmosphere variable should contain the string 'air'.
     For other atmospheres, the corresponding gas name should be given ('N2', 'argon', etc.).
     """
+
     duration: Optional[str] = None
     temperature: Optional[str] = None
     atmosphere: Optional[str] = None
@@ -84,6 +87,7 @@ class DrySolid(Action):
 @attr.s(auto_attribs=True)
 class DrySolution(Action):
     """Dry an organic solution with a desiccant"""
+
     material: Optional[str]
 
 
@@ -98,13 +102,17 @@ class Filter(Action):
     """
     Filtration action, possibly with information about what phase to keep ('filtrate' or 'precipitate')
     """
+
     phase_to_keep: Optional[str] = None
 
     def __attrs_post_init__(self):
         if self.phase_to_keep is not None and self.phase_to_keep not in [
-            'filtrate', 'precipitate'
+            "filtrate",
+            "precipitate",
         ]:
-            raise ValueError('phase_to_keep must be equal to "filtrate" or "precipitate"')
+            raise ValueError(
+                'phase_to_keep must be equal to "filtrate" or "precipitate"'
+            )
 
 
 @attr.s(auto_attribs=True)
@@ -120,12 +128,13 @@ class MakeSolution(Action):
     Action to make a solution out of a list of compounds.
     This action is usually followed by another action using it (Add, Quench, etc.).
     """
+
     materials: List[Chemical]
 
     def __attrs_post_init__(self):
         if len(self.materials) < 2:
             raise ValueError(
-                f'MakeSolution requires at least two components (actual: {len(self.materials)}'
+                f"MakeSolution requires at least two components (actual: {len(self.materials)}"
             )
 
 
@@ -190,6 +199,7 @@ class SetTemperature(Action):
     """
     If there is a duration given with cooling/heating, use "Stir" instead
     """
+
     temperature: str
 
 
@@ -217,6 +227,7 @@ class Wait(Action):
     NB: "Wait" as an action can be ambiguous depending on the context.
     It seldom means "waiting without doing anything", but is often "continue what was before", at least in Pistachio.
     """
+
     duration: str
     temperature: Optional[str] = None
 

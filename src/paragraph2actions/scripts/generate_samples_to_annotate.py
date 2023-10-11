@@ -5,12 +5,12 @@ import click
 
 from paragraph2actions.action_string_converter import ReadableConverter
 from paragraph2actions.actions import (
-    NoAction,
-    InvalidAction,
-    Filter,
     PH,
-    Stir,
+    Filter,
     FollowOtherProcedure,
+    InvalidAction,
+    NoAction,
+    Stir,
 )
 from paragraph2actions.misc import TextWithActions, load_samples, save_samples
 from paragraph2actions.utils import extract_chemicals
@@ -29,49 +29,49 @@ def includes_invalid_action(sample: TextWithActions) -> bool:
 
 
 def contains_followed_by(sample: TextWithActions) -> bool:
-    return 'followed by' in sample.text
+    return "followed by" in sample.text
 
 
 def contains_allowed_to(sample: TextWithActions) -> bool:
-    return 'allowed to' in sample.text
+    return "allowed to" in sample.text
 
 
 def contains_permitted_to(sample: TextWithActions) -> bool:
-    return 'permitted to' in sample.text
+    return "permitted to" in sample.text
 
 
 def contains_left_to(sample: TextWithActions) -> bool:
-    return 'left to' in sample.text
+    return "left to" in sample.text
 
 
 def contains_saturated(sample: TextWithActions) -> bool:
-    return 'saturated' in sample.text
+    return "saturated" in sample.text
 
 
 def contains_under(sample: TextWithActions) -> bool:
-    return ' under ' in sample.text and not any(
-        w in sample.text for w in ['under vac', 'reduced pressure']
+    return " under " in sample.text and not any(
+        w in sample.text for w in ["under vac", "reduced pressure"]
     )
 
 
 def contains_maintain(sample: TextWithActions) -> bool:
-    return 'maintain' in sample.text
+    return "maintain" in sample.text
 
 
 def contains_ice(sample: TextWithActions) -> bool:
-    return ' ice' in sample.text
+    return " ice" in sample.text
 
 
 def contains_bath(sample: TextWithActions) -> bool:
-    return 'bath' in sample.text
+    return "bath" in sample.text
 
 
 def contains_neutralize(sample: TextWithActions) -> bool:
-    return 'neutraliz' in sample.text
+    return "neutraliz" in sample.text
 
 
 def starts_with_after(sample: TextWithActions) -> bool:
-    return sample.text.startswith('After')
+    return sample.text.startswith("After")
 
 
 def includes_unclear_filtration(sample: TextWithActions) -> bool:
@@ -89,12 +89,14 @@ def includes_duplicated_chemicals(sample: TextWithActions) -> bool:
 
 
 def includes_ph(sample: TextWithActions) -> bool:
-    return ' pH ' in sample.text or any(isinstance(a, PH) for a in sample.actions)
+    return " pH " in sample.text or any(isinstance(a, PH) for a in sample.actions)
 
 
 def lonely_stir(sample: TextWithActions) -> bool:
     stir_actions = [a for a in sample.actions if isinstance(a, Stir)]
-    lonely_stirs = [a for a in stir_actions if a.duration is None and a.temperature is None]
+    lonely_stirs = [
+        a for a in stir_actions if a.duration is None and a.temperature is None
+    ]
     return len(lonely_stirs) != 0
 
 
@@ -103,7 +105,7 @@ def maybe_follow_other_procedure(sample: TextWithActions) -> bool:
     if any(isinstance(a, FollowOtherProcedure) for a in sample.actions):
         return False
 
-    return any(w in sample.text.lower() for w in ['prepared', 'synthesi'])
+    return any(w in sample.text.lower() for w in ["prepared", "synthesi"])
 
 
 subsets: List[Callable[[TextWithActions], bool]] = [
@@ -129,24 +131,26 @@ subsets: List[Callable[[TextWithActions], bool]] = [
 ]
 
 
-def select_samples(samples: List[TextWithActions],
-                   n_per_subset=500,
-                   n_from_random=2000) -> List[TextWithActions]:
+def select_samples(
+    samples: List[TextWithActions], n_per_subset=500, n_from_random=2000
+) -> List[TextWithActions]:
     # for each subset, get the corresponding samples
     samples_for_subsets = [
         [sample for sample in samples if predicate(sample)] for predicate in subsets
     ]
-    print('Total filtered samples:', sum(len(s) for s in samples_for_subsets))
+    print("Total filtered samples:", sum(len(s) for s in samples_for_subsets))
 
     # Take a given number of samples from each subset and put them together
     merged_samples = []
     for sample_list in samples_for_subsets:
         merged_samples.extend(sample_list[:n_per_subset])
-    print(f'Size after keeping max {n_per_subset} for each category: {len(merged_samples)}')
+    print(
+        f"Size after keeping max {n_per_subset} for each category: {len(merged_samples)}"
+    )
 
     # extend with random (normal) samples
     merged_samples.extend(samples[:n_from_random])
-    print('Size after addition of random samples:', len(merged_samples))
+    print("Size after addition of random samples:", len(merged_samples))
 
     # Remove duplicates
     seen_sentences: Set[str] = set()
@@ -159,16 +163,22 @@ def select_samples(samples: List[TextWithActions],
     # shuffle
     random.shuffle(unique_samples)
 
-    print('Size after removing identical sentences:', len(unique_samples))
+    print("Size after removing identical sentences:", len(unique_samples))
     return unique_samples
 
 
 @click.command()
-@click.option('--src_in', required=True, help='File containing original sentences')
-@click.option('--tgt_in', required=True, help='File containing original sequences')
-@click.option('--src_out', required=True, help='Where to save sentences selected for annotation')
-@click.option('--tgt_out', required=True, help='Where to save sequences selected for annotation')
-def generate_samples_to_annotate(src_in: str, tgt_in: str, src_out: str, tgt_out: str) -> None:
+@click.option("--src_in", required=True, help="File containing original sentences")
+@click.option("--tgt_in", required=True, help="File containing original sequences")
+@click.option(
+    "--src_out", required=True, help="Where to save sentences selected for annotation"
+)
+@click.option(
+    "--tgt_out", required=True, help="Where to save sequences selected for annotation"
+)
+def generate_samples_to_annotate(
+    src_in: str, tgt_in: str, src_out: str, tgt_out: str
+) -> None:
     """Generate samples for annotation"""
     action_string_converter = ReadableConverter()
 
@@ -183,9 +193,9 @@ def generate_samples_to_annotate(src_in: str, tgt_in: str, src_out: str, tgt_out
         samples=selected_samples,
         converter=action_string_converter,
         text_file=src_out,
-        actions_file=tgt_out
+        actions_file=tgt_out,
     )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     generate_samples_to_annotate()

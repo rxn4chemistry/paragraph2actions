@@ -2,8 +2,8 @@ import copy
 import logging
 from typing import List
 
+from ..actions import Action, Add, MakeSolution
 from .action_postprocessor import ActionPostprocessor
-from ..actions import Action, MakeSolution, Add
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.NullHandler())
@@ -28,12 +28,13 @@ class InitialMakesolutionPostprocessor(ActionPostprocessor):
         atmosphere = add.atmosphere
         temperature = add.temperature
         if add.dropwise:
-            logger.warning('Dropwise addition of initial MakeSolution is ignored')
+            logger.warning("Dropwise addition of initial MakeSolution is ignored")
         if add.duration is not None:
-            logger.warning('Duration of addition of initial MakeSolution is ignored')
+            logger.warning("Duration of addition of initial MakeSolution is ignored")
 
         adds = [
-            Add(m, temperature=temperature, atmosphere=atmosphere) for m in makesolution.materials
+            Add(m, temperature=temperature, atmosphere=atmosphere)
+            for m in makesolution.materials
         ]
 
         # replace "MakeSolution X; Add SLN" by the new Adds
@@ -52,7 +53,7 @@ class InitialMakesolutionPostprocessor(ActionPostprocessor):
         if not isinstance(add, Add):
             return False
 
-        if add.material.name != 'SLN':
+        if add.material.name != "SLN":
             return False
 
         return True

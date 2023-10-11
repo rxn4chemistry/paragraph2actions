@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from .actions import InvalidAction, NoAction, Action
+from .actions import Action, InvalidAction, NoAction
 from .utils import Sentence
 
 
@@ -16,7 +16,7 @@ class SentencePostprocessor:
         self,
         consider_straightforward_empty_sentences_as_noaction: bool = True,
         remove_sentences_with_invalid_actions: bool = True,
-        remove_empty_sentences: bool = True
+        remove_empty_sentences: bool = True,
     ):
         """
         Args:
@@ -25,13 +25,30 @@ class SentencePostprocessor:
             remove_empty_sentences: whether to keep empty sentences (NB: NoAction is not considered to be empty)
         """
 
-        self.consider_straightforward_empty_sentences_as_noaction = consider_straightforward_empty_sentences_as_noaction
-        self.remove_sentences_with_invalid_actions = remove_sentences_with_invalid_actions
+        self.consider_straightforward_empty_sentences_as_noaction = (
+            consider_straightforward_empty_sentences_as_noaction
+        )
+        self.remove_sentences_with_invalid_actions = (
+            remove_sentences_with_invalid_actions
+        )
         self.remove_empty_sentences = remove_empty_sentences
 
         self.no_action_keywords = [
-            'MS', 'found:', 'Found:', 'ppm', 'ESI', 'NMR', 'm/z', 'retention', 'Retention', 'HPLC',
-            'TLC', 'M+H', 'M+1', 'mp:', 'Mp:'
+            "MS",
+            "found:",
+            "Found:",
+            "ppm",
+            "ESI",
+            "NMR",
+            "m/z",
+            "retention",
+            "Retention",
+            "HPLC",
+            "TLC",
+            "M+H",
+            "M+1",
+            "mp:",
+            "Mp:",
         ]
         self.no_action_length = 30
 
@@ -51,8 +68,9 @@ class SentencePostprocessor:
                 return None
 
         if self.consider_straightforward_empty_sentences_as_noaction:
-            if len(sentence.actions
-                   ) == 0 and self.empty_sentence_is_straightforward(sentence.text):
+            if len(sentence.actions) == 0 and self.empty_sentence_is_straightforward(
+                sentence.text
+            ):
                 return replace_actions([NoAction()])
 
         if self.remove_empty_sentences and len(sentence.actions) == 0:

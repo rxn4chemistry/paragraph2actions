@@ -1,8 +1,9 @@
 import copy
 from typing import List, Set
 
-from .substitution_augmenter import SubstitutionAugmenter
 from paragraph2actions.misc import TextWithActions
+
+from .substitution_augmenter import SubstitutionAugmenter
 
 
 class ActionAttributeAugmenter(SubstitutionAugmenter):

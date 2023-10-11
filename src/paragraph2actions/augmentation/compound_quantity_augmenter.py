@@ -1,9 +1,10 @@
 import copy
 from typing import List
 
-from .substitution_augmenter import SubstitutionAugmenter
-from ..utils import extract_chemicals
 from paragraph2actions.misc import TextWithActions
+
+from ..utils import extract_chemicals
+from .substitution_augmenter import SubstitutionAugmenter
 
 
 class CompoundQuantityAugmenter(SubstitutionAugmenter):
@@ -27,7 +28,9 @@ class CompoundQuantityAugmenter(SubstitutionAugmenter):
         chemicals = extract_chemicals(sample.actions)
 
         quantity_blocks = [c.quantity for c in chemicals]
-        all_quantities = [q for quantity_block in quantity_blocks for q in quantity_block]
+        all_quantities = [
+            q for quantity_block in quantity_blocks for q in quantity_block
+        ]
 
         unique_quantities = set(all_quantities)
 

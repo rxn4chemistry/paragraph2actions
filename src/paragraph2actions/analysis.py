@@ -1,13 +1,19 @@
-from typing import Sequence, List, Optional
+from typing import List, Optional, Sequence
 
 import textdistance
 from nltk.translate.bleu_score import corpus_bleu
 
-from .action_string_converter import ActionStringConverter, ReadableConverter, ActionStringConversionError
+from .action_string_converter import (
+    ActionStringConversionError,
+    ActionStringConverter,
+    ReadableConverter,
+)
 from .utils import all_identical
 
 
-def highlight_differences(source_sentences: List[str], translations: Sequence[List[str]]) -> None:
+def highlight_differences(
+    source_sentences: List[str], translations: Sequence[List[str]]
+) -> None:
     """
     Will highlight sentences that are translated differently by different models.
 
@@ -21,9 +27,9 @@ def highlight_differences(source_sentences: List[str], translations: Sequence[Li
         sentence_translations = [t[i] for t in translations]
 
         if not all_identical(sentence_translations):
-            print(f'Sample {i}: {sentence}')
+            print(f"Sample {i}: {sentence}")
             for model_no, s in enumerate(sentence_translations, 1):
-                print(f'{model_no}) {s}')
+                print(f"{model_no}) {s}")
             print()
 
 
@@ -73,8 +79,8 @@ def modified_bleu(truth: List[str], pred: List[str]) -> float:
     candidates = [sentence.split() for sentence in pred]
 
     # BLEU penalizes sentences with only one word. Even correct translations get a score of zero.
-    references = [r + max(0, 4 - len(r)) * [''] for r in references]
-    candidates = [c + max(0, 4 - len(c)) * [''] for c in candidates]
+    references = [r + max(0, 4 - len(r)) * [""] for r in references]
+    candidates = [c + max(0, 4 - len(c)) * [""] for c in candidates]
 
     # references must have a larger depth because it supports multiple choices
     refs = [[r] for r in references]
@@ -98,7 +104,10 @@ def original_bleu(truth: List[str], pred: List[str]) -> float:
 
 def levenshtein_similarity(truth: List[str], pred: List[str]) -> float:
     assert len(truth) == len(pred)
-    scores = (textdistance.levenshtein.normalized_similarity(t, p) for t, p in zip(truth, pred))
+    scores = (
+        textdistance.levenshtein.normalized_similarity(t, p)
+        for t, p in zip(truth, pred)
+    )
     return sum(scores) / len(truth)
 
 
@@ -116,7 +125,8 @@ def partial_accuracy(truth: List[str], pred: List[str], threshold: float) -> flo
     """
     assert len(truth) == len(pred)
     match_count = sum(
-        1 for t, p in zip(truth, pred)
+        1
+        for t, p in zip(truth, pred)
         if textdistance.levenshtein.normalized_similarity(t, p) >= threshold
     )
     return match_count / len(truth)

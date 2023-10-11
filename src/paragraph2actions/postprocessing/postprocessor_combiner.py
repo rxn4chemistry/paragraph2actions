@@ -1,7 +1,7 @@
 from typing import List
 
-from .action_postprocessor import ActionPostprocessor
 from ..actions import Action
+from .action_postprocessor import ActionPostprocessor
 
 
 class PostprocessorCombiner(ActionPostprocessor):

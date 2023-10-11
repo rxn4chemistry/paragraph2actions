@@ -1,29 +1,34 @@
 import inspect
 import itertools
-from typing import List, Iterable, Any, Iterator, Tuple, Sequence, Callable, Optional
+from typing import Any, Callable, Iterable, Iterator, List, Optional, Sequence, Tuple
 
 import attr
 
 from .actions import Action, Chemical
 from .actions import __dict__ as actions_module_dict  # type: ignore
 
-temperature_attribute_names = ['temperature']
-duration_attribute_names = ['duration']
-atmosphere_attribute_names = ['atmosphere']
+temperature_attribute_names = ["temperature"]
+duration_attribute_names = ["duration"]
+atmosphere_attribute_names = ["atmosphere"]
 
 
 def get_all_action_types() -> List[str]:
     """Returns a list of the available action names"""
 
     actions: List[str] = []
-    for name, val in actions_module_dict.items():  # iterate through every module's attributes
+    for (
+        name,
+        val,
+    ) in actions_module_dict.items():  # iterate through every module's attributes
         if inspect.isclass(val) and issubclass(val, Action) and val != Action:
             actions.append(name)
 
     return actions
 
 
-def extract_chemicals(actions: Iterable[Action], ignore_sln: bool = False) -> List[Chemical]:
+def extract_chemicals(
+    actions: Iterable[Action], ignore_sln: bool = False
+) -> List[Chemical]:
     """
     Returns a list of all the chemicals present in a sequence of actions.
     """
@@ -39,13 +44,14 @@ def extract_chemicals(actions: Iterable[Action], ignore_sln: bool = False) -> Li
                         chemicals.append(v)
 
     if ignore_sln:
-        chemicals = [chemical for chemical in chemicals if chemical.name != 'SLN']
+        chemicals = [chemical for chemical in chemicals if chemical.name != "SLN"]
 
     return chemicals
 
 
-def _actions_with_attribute_names(actions: Iterable[Action],
-                                  attribute_names: Sequence[str]) -> List[Tuple[Action, str]]:
+def _actions_with_attribute_names(
+    actions: Iterable[Action], attribute_names: Sequence[str]
+) -> List[Tuple[Action, str]]:
     """
     In a list of actions, looks for the ones having a given attribute names
     (that may be set or not).
@@ -65,7 +71,9 @@ def _actions_with_attribute_names(actions: Iterable[Action],
 
 
 def _apply_to_actions_with_attribute_names(
-    actions: Iterable[Action], attribute_names: Sequence[str], fn: Callable[[str], Optional[str]]
+    actions: Iterable[Action],
+    attribute_names: Sequence[str],
+    fn: Callable[[str], Optional[str]],
 ) -> None:
     """
     Applies a function of all the duration fields present in the given actions,
@@ -117,7 +125,9 @@ def apply_to_durations(actions: Iterable[Action], fn: Callable[[str], str]) -> N
     _apply_to_actions_with_attribute_names(actions, duration_attribute_names, fn)
 
 
-def apply_to_atmospheres(actions: Iterable[Action], fn: Callable[[str], Optional[str]]) -> None:
+def apply_to_atmospheres(
+    actions: Iterable[Action], fn: Callable[[str], Optional[str]]
+) -> None:
     """
     Applies a function of all the atmosphere fields present in the given actions,
     to update their values.
@@ -212,5 +222,6 @@ class Sentence:
     """
     Sentence from a synthesis recipe with the corresponding actions.
     """
+
     text: str
     actions: List[Action]
