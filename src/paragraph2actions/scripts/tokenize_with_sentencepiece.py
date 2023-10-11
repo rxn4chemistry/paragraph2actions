@@ -10,9 +10,7 @@ from paragraph2actions.sentencepiece_tokenizer import SentencePieceTokenizer
     "--output_filename", "-o", required=True, help="Where to save (de)tokenized text"
 )
 @click.option("--reverse", "-r", is_flag=True, help="If given, will do detokenization")
-def tokenize_with_sentencepiece(
-    model: str, input_filename: str, output_filename: str, reverse: bool
-) -> None:
+def main(model: str, input_filename: str, output_filename: str, reverse: bool) -> None:
     """Tokenize / detokenize with sentencepiece"""
 
     sp = SentencePieceTokenizer(model)
@@ -31,4 +29,4 @@ def tokenize_with_sentencepiece(
 
 
 if __name__ == "__main__":
-    tokenize_with_sentencepiece()
+    main()

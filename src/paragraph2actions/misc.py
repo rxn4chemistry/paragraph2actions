@@ -1,6 +1,7 @@
 from typing import Iterable, List
 
 import attr
+from rxn.utilities.files import PathLike
 
 from .actions import Action
 from .converter_interface import ActionStringConverter
@@ -17,7 +18,7 @@ class TextWithActions:
 
 
 def load_samples(
-    text_file: str, actions_file: str, converter: ActionStringConverter
+    text_file: PathLike, actions_file: PathLike, converter: ActionStringConverter
 ) -> List[TextWithActions]:
     """
     Loads samples of sentences with corresponding actions from files.
@@ -43,8 +44,8 @@ def load_samples(
 def save_samples(
     samples: Iterable[TextWithActions],
     converter: ActionStringConverter,
-    text_file: str,
-    actions_file: str,
+    text_file: PathLike,
+    actions_file: PathLike,
 ) -> None:
     """
     Saves samples of sentences with corresponding actions to files.
