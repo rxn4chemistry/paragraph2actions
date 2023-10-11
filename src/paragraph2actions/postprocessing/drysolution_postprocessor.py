@@ -1,7 +1,7 @@
 from typing import List
 
-from .action_postprocessor import ActionPostprocessor
 from ..actions import Action, DrySolution, Filter
+from .action_postprocessor import ActionPostprocessor
 
 
 class DrysolutionPostprocessor(ActionPostprocessor):
@@ -30,6 +30,6 @@ class DrysolutionPostprocessor(ActionPostprocessor):
             # If the next action is not Filter: add it.
             next_action = actions[i + 1] if i < len(actions) - 1 else None
             if not isinstance(next_action, Filter):
-                postprocessed.append(Filter('filtrate'))
+                postprocessed.append(Filter("filtrate"))
 
         return postprocessed

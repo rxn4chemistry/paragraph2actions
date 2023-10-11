@@ -12,10 +12,10 @@ class SentencePieceTokenizer:
 
     def tokenize(self, sentence: str) -> str:
         tokens = self.sp.EncodeAsPieces(sentence)
-        tokenized = ' '.join(tokens)
+        tokenized = " ".join(tokens)
         return tokenized
 
     def detokenize(self, sentence: str) -> str:
-        tokens = sentence.split(' ')
+        tokens = sentence.split(" ")
         detokenized = self.sp.DecodePieces(tokens)
         return detokenized

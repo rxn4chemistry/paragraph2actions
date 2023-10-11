@@ -1,12 +1,11 @@
 import copy
 from typing import List, Optional
 
+from ..actions import Action, Add, SetTemperature, Stir, Wait
 from .action_postprocessor import ActionPostprocessor
-from ..actions import Action, Wait, Add, SetTemperature, Stir
 
 
 class WaitPostprocessor(ActionPostprocessor):
-
     def __init__(self):
         self.ineligible_actions = {Add}
 
@@ -29,7 +28,7 @@ class WaitPostprocessor(ActionPostprocessor):
             if not self.eligible_first_action(a):
                 continue
 
-            setattr(a, 'duration', b.duration)
+            setattr(a, "duration", b.duration)
             updated_actions[i] = a
             updated_actions[i + 1] = None
 
@@ -39,4 +38,4 @@ class WaitPostprocessor(ActionPostprocessor):
         if any(isinstance(a, cls) for cls in self.ineligible_actions):
             return False
 
-        return hasattr(a, 'duration') and getattr(a, 'duration') is None
+        return hasattr(a, "duration") and getattr(a, "duration") is None

@@ -1,8 +1,8 @@
 import copy
 from typing import List
 
-from .action_postprocessor import ActionPostprocessor
 from ..actions import Action, NoAction
+from .action_postprocessor import ActionPostprocessor
 
 
 class NoActionPostprocessor(ActionPostprocessor):

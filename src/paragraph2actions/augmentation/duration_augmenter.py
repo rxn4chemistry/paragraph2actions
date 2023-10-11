@@ -14,4 +14,6 @@ class DurationAugmenter(ActionAttributeAugmenter):
             probability: probability with which to switch the compound name
             durations: list of durations to use for substitution
         """
-        super().__init__(probability=probability, values=durations, attribute_name='duration')
+        super().__init__(
+            probability=probability, values=durations, attribute_name="duration"
+        )
