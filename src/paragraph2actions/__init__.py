@@ -1,4 +1,4 @@
-"""Package setup."""
+"""Package initialization."""
 
 __copyright__ = """
 LICENSED INTERNAL CODE. PROPERTY OF IBM.
@@ -7,6 +7,4 @@ IBM Research Licensed Internal Code
 ALL RIGHTS RESERVED
 """
 
-from setuptools import setup
-
-setup()
+__version__ = "1.1.0"  # managed by bump2version

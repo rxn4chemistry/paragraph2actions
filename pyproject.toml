@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools >= 59.2.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+strict = true
+
+[[tool.mypy.overrides]]
+module = [
+    "tqdm.*",
+]
+ignore_missing_imports = true
