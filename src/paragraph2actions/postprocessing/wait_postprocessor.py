@@ -6,7 +6,7 @@ from .action_postprocessor import ActionPostprocessor
 
 
 class WaitPostprocessor(ActionPostprocessor):
-    def __init__(self):
+    def __init__(self) -> None:
         self.ineligible_actions = {Add}
 
     def postprocess(self, actions: List[Action]) -> List[Action]:

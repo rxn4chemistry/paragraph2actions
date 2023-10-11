@@ -22,7 +22,7 @@ def translate_actions(
     sentencepiece_model: str,
     src_file: str,
     output_file: str,
-):
+) -> None:
     """
     Translate a text with an OpenNMT model.
 

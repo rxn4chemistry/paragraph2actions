@@ -11,7 +11,7 @@ class FilterPostprocessor(ActionPostprocessor):
     Sets what to keep (filtrate vs precipitate) in a Filter action based on the following action.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.pre_filtrate_classes: List[Type[Action]] = [DrySolution]
         self.post_filtrate_classes: List[Type[Action]] = [Concentrate, DrySolution]
         self.pre_precipitate_classes: List[Type[Action]] = []

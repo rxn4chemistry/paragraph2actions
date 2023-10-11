@@ -27,7 +27,7 @@ class Action(ABC):
     """
 
     @property
-    def action_name(self):
+    def action_name(self) -> str:
         return self.__class__.__name__
 
 
@@ -54,7 +54,7 @@ class CollectLayer(Action):
 
     layer: str
 
-    def __attrs_post_init__(self):
+    def __attrs_post_init__(self) -> None:
         if self.layer not in ["aqueous", "organic"]:
             raise ValueError('layer must be equal to "aqueous" or "organic"')
 
@@ -105,7 +105,7 @@ class Filter(Action):
 
     phase_to_keep: Optional[str] = None
 
-    def __attrs_post_init__(self):
+    def __attrs_post_init__(self) -> None:
         if self.phase_to_keep is not None and self.phase_to_keep not in [
             "filtrate",
             "precipitate",
@@ -131,7 +131,7 @@ class MakeSolution(Action):
 
     materials: List[Chemical]
 
-    def __attrs_post_init__(self):
+    def __attrs_post_init__(self) -> None:
         if len(self.materials) < 2:
             raise ValueError(
                 f"MakeSolution requires at least two components (actual: {len(self.materials)}"

@@ -132,7 +132,7 @@ subsets: List[Callable[[TextWithActions], bool]] = [
 
 
 def select_samples(
-    samples: List[TextWithActions], n_per_subset=500, n_from_random=2000
+    samples: List[TextWithActions], n_per_subset: int = 500, n_from_random: int = 2000
 ) -> List[TextWithActions]:
     # for each subset, get the corresponding samples
     samples_for_subsets = [
