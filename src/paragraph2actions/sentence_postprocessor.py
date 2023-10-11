@@ -79,10 +79,11 @@ class SentencePostprocessor:
         # If we got here, no post-processing is needed and we return the same actions
         return replace_actions(sentence.actions)
 
-    def empty_sentence_is_straightforward(self, sentence_text):
+    def empty_sentence_is_straightforward(self, sentence_text: str) -> bool:
         """
         Returns True if we are reasonably certain that no actions are included
         """
+        # TODO: there's likely an error below: should it be ``in sentence_text.split(" ")``?
         has_analysis_keyword = any(w in sentence_text for w in self.no_action_keywords)
         short_sentence = len(sentence_text) < self.no_action_length
 

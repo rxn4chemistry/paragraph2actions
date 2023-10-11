@@ -1,6 +1,7 @@
 import logging
 import os
 import tempfile
+from argparse import Namespace
 from itertools import repeat
 from typing import Iterable, List, Optional, Union
 
@@ -40,7 +41,7 @@ class RawTranslator:
         )
 
     def translate_sentences_with_onmt(
-        self, opt, sentences: List[str]
+        self, opt: Namespace, sentences: List[str]
     ) -> List[List[Translation]]:
         """
         Do the translation (in tokenized format) with OpenNMT.
@@ -60,7 +61,7 @@ class RawTranslator:
 
             return self.translate_with_onmt(opt)
 
-    def translate_with_onmt(self, opt) -> List[List[Translation]]:
+    def translate_with_onmt(self, opt: Namespace) -> List[List[Translation]]:
         """
         Do the translation (in tokenized format) with OpenNMT.
 
@@ -114,7 +115,7 @@ def get_onmt_opt(
     output_file: Optional[str] = None,
     n_best: int = 1,
     log_probs: bool = False,
-):
+) -> Namespace:
     src = src_file if src_file is not None else "(unused)"
     output = output_file if output_file is not None else "(unused)"
     args_str = f'--model {" ".join(translation_model)} --src {src} --output {output}'
@@ -125,7 +126,7 @@ def get_onmt_opt(
     args = args_str.split()
 
     parser = onmt_parser()
-    opt = parser.parse_args(args)
+    opt: Namespace = parser.parse_args(args)
     ArgumentParser.validate_translate_opts(opt)
 
     return opt

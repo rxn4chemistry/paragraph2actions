@@ -12,7 +12,7 @@ class SameTemperaturePostprocessor(ActionPostprocessor):
     looking backwards in the text.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.same_temperature_names = {"same temperature"}
 
     def postprocess(self, actions: List[Action]) -> List[Action]:

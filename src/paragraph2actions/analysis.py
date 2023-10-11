@@ -1,4 +1,4 @@
-from typing import List, Optional, Sequence
+from typing import Iterator, List, Optional, Sequence
 
 import textdistance
 from nltk.translate.bleu_score import corpus_bleu
@@ -21,7 +21,7 @@ def highlight_differences(
         source_sentences: Sentences to translate (length: L)
         translations: Multiple lists of translations, depending on the number of translation models (size: n_models x L)
     """
-    assert all(len(l) == len(source_sentences) for l in translations)
+    assert all(len(t) == len(source_sentences) for t in translations)
 
     for i, sentence in enumerate(source_sentences):
         sentence_translations = [t[i] for t in translations]
@@ -84,7 +84,7 @@ def modified_bleu(truth: List[str], pred: List[str]) -> float:
 
     # references must have a larger depth because it supports multiple choices
     refs = [[r] for r in references]
-    return corpus_bleu(refs, candidates)
+    return corpus_bleu(refs, candidates)  # type: ignore[no-any-return]
 
 
 def original_bleu(truth: List[str], pred: List[str]) -> float:
@@ -99,12 +99,12 @@ def original_bleu(truth: List[str], pred: List[str]) -> float:
 
     # references must have a larger depth because it supports multiple choices
     refs = [[r] for r in references]
-    return corpus_bleu(refs, candidates)
+    return corpus_bleu(refs, candidates)  # type: ignore[no-any-return]
 
 
 def levenshtein_similarity(truth: List[str], pred: List[str]) -> float:
     assert len(truth) == len(pred)
-    scores = (
+    scores: Iterator[float] = (
         textdistance.levenshtein.normalized_similarity(t, p)
         for t, p in zip(truth, pred)
     )

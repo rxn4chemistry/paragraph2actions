@@ -1,6 +1,6 @@
 import re
 from abc import ABC, abstractmethod
-from typing import List, Optional, Tuple
+from typing import Callable, List, Optional, Tuple
 
 from .actions import (
     PH,
@@ -49,7 +49,7 @@ class ActionStringConverter(ABC):
     Base class for the conversion of our custom action classes to and from strings.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         for action_name in get_all_action_types():
             assert self.action_type_supported(
                 action_name
@@ -87,7 +87,7 @@ class ReprConverter(ActionStringConverter):
 
     def string_to_actions(self, action_string: str) -> List[Action]:
         try:
-            return eval(action_string)
+            return eval(action_string)  # type: ignore[no-any-return]
         except Exception as e:
             raise ActionStringConversionError(action_string) from e
 
@@ -154,7 +154,7 @@ class ReadableConverter(ActionStringConverter):
         action_string = action_string.replace(self.separator_substitute, self.separator)
 
         action_type = action_string.split(" ", 1)[0]
-        return self._get_to_method(action_type)(action_string)
+        return self._get_to_method(action_type)(action_string)  # type: ignore[no-any-return,unused-ignore]
 
     def _uppercase_action_name(self, action: Action) -> str:
         return action.action_name.upper()
@@ -173,23 +173,23 @@ class ReadableConverter(ActionStringConverter):
             quantity_str = ", ".join(c.quantity)
             return f"{compound_name} ({quantity_str})"
 
-    def _get_from_method(self, action_type: str):
+    def _get_from_method(self, action_type: str) -> Callable[[Action], str]:
         method_name = "_from_" + action_type.lower()
         method = getattr(self, method_name, None)
         if method is None:
             raise ValueError(
                 f'Cannot find method to convert "{action_type}" action to string'
             )
-        return method
+        return method  # type: ignore[no-any-return]
 
-    def _get_to_method(self, action_type: str):
+    def _get_to_method(self, action_type: str) -> Callable[[str], Action]:
         method_name = "_to_" + action_type.lower()
         method = getattr(self, method_name, None)
         if method is None:
             raise ValueError(
                 f'Cannot find method to convert "{action_type}" action string to an actual action'
             )
-        return method
+        return method  # type: ignore[no-any-return]
 
     def _from_add(self, action: Add) -> str:
         s = f"{self._uppercase_action_name(action)} {self._chemical_to_string(action.material)}"
@@ -428,7 +428,7 @@ class ReadableConverter(ActionStringConverter):
         if action.atmosphere is not None:
             s += f" under {action.atmosphere}"
         if action.dean_stark:
-            s += f" with Dean-Stark apparatus"
+            s += " with Dean-Stark apparatus"
         return s
 
     def _to_reflux(self, action_text: str) -> Action:

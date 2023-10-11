@@ -17,5 +17,5 @@ class SentencePieceTokenizer:
 
     def detokenize(self, sentence: str) -> str:
         tokens = sentence.split(" ")
-        detokenized = self.sp.DecodePieces(tokens)
+        detokenized: str = self.sp.DecodePieces(tokens)
         return detokenized

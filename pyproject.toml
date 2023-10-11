@@ -10,6 +10,9 @@ strict = true
 
 [[tool.mypy.overrides]]
 module = [
-    "tqdm.*",
+    "nltk.*",
+    "onmt.*",
+    "sentencepiece.*",
+    "textdistance.*",
 ]
 ignore_missing_imports = true
