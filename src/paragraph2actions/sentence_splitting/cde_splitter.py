@@ -2,10 +2,7 @@ from typing import List
 
 import chemdataextractor
 
-from .sentence_splitter import (
-    SentenceSplitter,
-    SentenceSplittingError,
-)
+from .sentence_splitter import SentenceSplitter, SentenceSplittingError
 
 
 class CdeSplitter(SentenceSplitter):

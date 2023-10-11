@@ -1,9 +1,7 @@
 import re
 from typing import List
 
-from .sentence_splitter import (
-    SentenceSplitter,
-)
+from .sentence_splitter import SentenceSplitter
 
 
 class DotSplitter(SentenceSplitter):
@@ -11,7 +9,7 @@ class DotSplitter(SentenceSplitter):
     Splits sentences where there are dots followed by spaces.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(
             split_sentences_at_newlines=True, add_full_stop_if_missing=True
         )
