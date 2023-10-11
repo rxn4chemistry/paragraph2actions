@@ -13,7 +13,7 @@ jobs:
       with:
         python-version: 3.8
     - name: Install Dependencies
-      run: pip install -e .[dev]
+      run: pip install -e .[dev,cde]
     - name: Check black
       run: python -m black --check --diff --color .
     - name: Check isort
