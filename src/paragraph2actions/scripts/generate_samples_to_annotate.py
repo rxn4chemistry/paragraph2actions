@@ -1,4 +1,5 @@
 import random
+from pathlib import Path
 from typing import Callable, List, Set
 
 import click
@@ -168,17 +169,31 @@ def select_samples(
 
 
 @click.command()
-@click.option("--src_in", required=True, help="File containing original sentences")
-@click.option("--tgt_in", required=True, help="File containing original sequences")
 @click.option(
-    "--src_out", required=True, help="Where to save sentences selected for annotation"
+    "--src_in",
+    required=True,
+    type=click.Path(exists=True, dir_okay=False, path_type=Path),
+    help="File containing original sentences",
 )
 @click.option(
-    "--tgt_out", required=True, help="Where to save sequences selected for annotation"
+    "--tgt_in",
+    required=True,
+    type=click.Path(exists=True, dir_okay=False, path_type=Path),
+    help="File containing original sequences",
 )
-def generate_samples_to_annotate(
-    src_in: str, tgt_in: str, src_out: str, tgt_out: str
-) -> None:
+@click.option(
+    "--src_out",
+    required=True,
+    type=click.Path(writable=True, path_type=Path),
+    help="Where to save sentences selected for annotation",
+)
+@click.option(
+    "--tgt_out",
+    required=True,
+    type=click.Path(writable=True, path_type=Path),
+    help="Where to save sequences selected for annotation",
+)
+def main(src_in: Path, tgt_in: Path, src_out: Path, tgt_out: Path) -> None:
     """Generate samples for annotation"""
     action_string_converter = ReadableConverter()
 
@@ -198,4 +213,4 @@ def generate_samples_to_annotate(
 
 
 if __name__ == "__main__":
-    generate_samples_to_annotate()
+    main()

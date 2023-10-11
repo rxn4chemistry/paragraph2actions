@@ -20,12 +20,7 @@ class Translator:
             sentencepiece_model: path to the sentencepiece model file
         """
         self.sp = SentencePieceTokenizer(sentencepiece_model)
-
-        if isinstance(translation_model, str):
-            translation_model = [translation_model]
-        self.translation_model = list(translation_model)
-
-        self.onmt_translator = RawTranslator.from_model_path(self.translation_model)
+        self.onmt_translator = RawTranslator.from_model_path(translation_model)
 
     def translate_single(self, sentence: str) -> str:
         """

@@ -68,10 +68,9 @@ This section explains how to train the translation model for action extraction.
 
 ## General setup
 
-For simplicity, set the following environment variables:
+For simplicity, set the following environment variable:
 ```bash
-export CODE_DIR="$(pwd)"
-export DATA_DIR="$CODE_DIR/test_data"
+export DATA_DIR="$(pwd)/test_data"
 ```
 `DATA_DIR` can be changed to any other location containing the data to train on.
 We assume that `DATA_DIR` contains the following files:
@@ -84,20 +83,15 @@ src-test.txt    src-train.txt   src-valid.txt   tgt-test.txt    tgt-train.txt   
 We train a SentencePiece tokenizer on the train split:
 ```bash
 export VOCAB_SIZE=200  # for the production model, a size of 16000 is used
-python $CODE_DIR/src/paragraph2actions/scripts/create_sentencepiece_tokenizer.py \
-  -i $DATA_DIR/src-train.txt -i $DATA_DIR/tgt-train.txt -m $DATA_DIR/sp_model -v $VOCAB_SIZE
+paragraph2actions-create-tokenizer -i $DATA_DIR/src-train.txt -i $DATA_DIR/tgt-train.txt -m $DATA_DIR/sp_model -v $VOCAB_SIZE
 ```
 
 We then tokenize the data:
 ```bash
-python $CODE_DIR/src/paragraph2actions/scripts/tokenize_with_sentencepiece.py \
-  -m $DATA_DIR/sp_model.model -i $DATA_DIR/src-train.txt -o $DATA_DIR/tok-src-train.txt
-python $CODE_DIR/src/paragraph2actions/scripts/tokenize_with_sentencepiece.py \
-  -m $DATA_DIR/sp_model.model -i $DATA_DIR/src-valid.txt -o $DATA_DIR/tok-src-valid.txt
-python $CODE_DIR/src/paragraph2actions/scripts/tokenize_with_sentencepiece.py \
-  -m $DATA_DIR/sp_model.model -i $DATA_DIR/tgt-train.txt -o $DATA_DIR/tok-tgt-train.txt
-python $CODE_DIR/src/paragraph2actions/scripts/tokenize_with_sentencepiece.py \
-  -m $DATA_DIR/sp_model.model -i $DATA_DIR/tgt-valid.txt -o $DATA_DIR/tok-tgt-valid.txt
+paragraph2actions-tokenize -m $DATA_DIR/sp_model.model -i $DATA_DIR/src-train.txt -o $DATA_DIR/tok-src-train.txt
+paragraph2actions-tokenize -m $DATA_DIR/sp_model.model -i $DATA_DIR/src-valid.txt -o $DATA_DIR/tok-src-valid.txt
+paragraph2actions-tokenize -m $DATA_DIR/sp_model.model -i $DATA_DIR/tgt-train.txt -o $DATA_DIR/tok-tgt-train.txt
+paragraph2actions-tokenize -m $DATA_DIR/sp_model.model -i $DATA_DIR/tgt-valid.txt -o $DATA_DIR/tok-tgt-valid.txt
 ```
 
 ## Training
@@ -157,15 +151,14 @@ Experimental procedure sentences can then be translated to action sequences with
 # Update the path to the OpenNMT model as required
 export MODEL="$DATA_DIR/models/model_step_520000.pt"
 
-python $CODE_DIR/src/paragraph2actions/scripts/translate_actions.py \
-  -t $MODEL -p $DATA_DIR/sp_model.model -s $DATA_DIR/src-test.txt -o $DATA_DIR/pred.txt
+paragraph2actions-translate -t $MODEL -p $DATA_DIR/sp_model.model -s $DATA_DIR/src-test.txt -o $DATA_DIR/pred.txt
 ```
 
 ## Evaluation
 
 To print the metrics on the predictions, the following command can be used:
 ```bash
-python $CODE_DIR/src/paragraph2actions/scripts/calculate_metrics.py -g $DATA_DIR/tgt-test.txt -p $DATA_DIR/pred.txt
+paragraph2actions-calculate-metrics -g $DATA_DIR/tgt-test.txt -p $DATA_DIR/pred.txt
 ```
 
 
@@ -174,12 +167,12 @@ python $CODE_DIR/src/paragraph2actions/scripts/calculate_metrics.py -g $DATA_DIR
 The following code illustrate how to augment the data for existing sentences and associated action sequences.
 
 ```python
-from paragraph2actions.action_string_converter import ReadableConverter
 from paragraph2actions.augmentation.compound_name_augmenter import CompoundNameAugmenter
 from paragraph2actions.augmentation.compound_quantity_augmenter import CompoundQuantityAugmenter
 from paragraph2actions.augmentation.duration_augmenter import DurationAugmenter
 from paragraph2actions.augmentation.temperature_augmenter import TemperatureAugmenter
 from paragraph2actions.misc import load_samples, TextWithActions
+from paragraph2actions.readable_converter import ReadableConverter
 
 converter = ReadableConverter()
 samples = load_samples('test_data/src-test.txt', 'test_data/tgt-test.txt', converter)
@@ -228,11 +221,11 @@ STIR for overnight at room temperature.
 The following code illustrate the postprocessing of actions.
 
 ```python
-from paragraph2actions.action_string_converter import ReadableConverter
 from paragraph2actions.postprocessing.filter_postprocessor import FilterPostprocessor
 from paragraph2actions.postprocessing.noaction_postprocessor import NoActionPostprocessor
 from paragraph2actions.postprocessing.postprocessor_combiner import PostprocessorCombiner
 from paragraph2actions.postprocessing.wait_postprocessor import WaitPostprocessor
+from paragraph2actions.readable_converter import ReadableConverter
 
 converter = ReadableConverter()
 postprocessor = PostprocessorCombiner([
