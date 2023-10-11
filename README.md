@@ -68,7 +68,7 @@ This section explains how to train the translation model for action extraction.
 
 ## General setup
 
-For simplicity, set the following environment variables:
+For simplicity, set the following environment variable:
 ```bash
 export DATA_DIR="$(pwd)/test_data"
 ```
