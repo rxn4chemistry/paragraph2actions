@@ -1,6 +1,6 @@
 attrs==19.3.0
 click==7.0
 nltk==3.6.6
-OpenNMT-Py==1.1.1
+rxn-opennmt-py==1.1.5
 sentencepiece==0.1.83
 textdistance==4.1.5
