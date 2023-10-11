@@ -10,6 +10,14 @@ from .actions import __dict__ as actions_module_dict  # type: ignore
 temperature_attribute_names = ["temperature"]
 duration_attribute_names = ["duration"]
 atmosphere_attribute_names = ["atmosphere"]
+compound_attribute_names = [
+    "gas",
+    "material",
+    "material_1",
+    "material_2",
+    "materials",
+    "solvent",
+]
 
 
 def get_all_action_types() -> List[str]:
@@ -47,6 +55,52 @@ def extract_chemicals(
         chemicals = [chemical for chemical in chemicals if chemical.name != "SLN"]
 
     return chemicals
+
+
+def actions_with_compounds(actions: Iterable[Action]) -> List[Tuple[Action, str]]:
+    """
+    In a list of actions, looks for the ones having a compound (that may be
+    set or not).
+
+    Returns them as a list of actions paired with the name of the member
+    variable corresponding to the compound. Includes both compounds specified
+    as strings and as instances of Chemical.
+    """
+
+    return _actions_with_attribute_names(actions, compound_attribute_names)
+
+
+def extract_compound_names(
+    actions: Iterable[Action], ignore_sln: bool = True
+) -> List[str]:
+    """
+    Returns a list of all the compounds (as strings) present in a sequence of
+    actions.
+
+    Will not only return the ones corresponding to the Chemical instances
+    extracted by extract_chemicals, but also the ones that are present only
+    as strings such as Degas.gas or DrySolution.material.
+    """
+
+    compounds = []
+
+    for action, attribute_name in actions_with_compounds(actions):
+        value = getattr(action, attribute_name)
+        if value is None:
+            continue
+        elif isinstance(value, str):
+            compounds.append(value)
+        elif isinstance(value, Chemical):
+            compounds.append(value.name)
+        elif isinstance(value, list):
+            for element in value:
+                if isinstance(element, Chemical):
+                    compounds.append(element.name)
+
+    if ignore_sln:
+        compounds = [compound for compound in compounds if compound != "SLN"]
+
+    return compounds
 
 
 def _actions_with_attribute_names(
