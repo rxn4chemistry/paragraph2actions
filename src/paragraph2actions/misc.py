@@ -2,8 +2,8 @@ from typing import Iterable, List
 
 import attr
 
-from .action_string_converter import ActionStringConverter
 from .actions import Action
+from .converter_interface import ActionStringConverter
 
 
 @attr.s(auto_attribs=True)
