@@ -3,7 +3,6 @@ from typing import Callable, List, Set
 
 import click
 
-from paragraph2actions.action_string_converter import ReadableConverter
 from paragraph2actions.actions import (
     PH,
     Filter,
@@ -13,6 +12,7 @@ from paragraph2actions.actions import (
     Stir,
 )
 from paragraph2actions.misc import TextWithActions, load_samples, save_samples
+from paragraph2actions.readable_converter import ReadableConverter
 from paragraph2actions.utils import extract_chemicals
 
 

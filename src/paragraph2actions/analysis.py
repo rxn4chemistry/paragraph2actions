@@ -3,11 +3,9 @@ from typing import Iterator, List, Optional, Sequence
 import textdistance
 from nltk.translate.bleu_score import corpus_bleu
 
-from .action_string_converter import (
-    ActionStringConversionError,
-    ActionStringConverter,
-    ReadableConverter,
-)
+from .conversion_utils import ActionStringConversionError
+from .converter_interface import ActionStringConverter
+from .readable_converter import ReadableConverter
 from .utils import all_identical
 
 
