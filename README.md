@@ -70,19 +70,19 @@ src-test.txt    src-train.txt   src-valid.txt   tgt-test.txt    tgt-train.txt   
 We train a SentencePiece tokenizer on the train split:
 ```bash
 export VOCAB_SIZE=200  # for the production model, a size of 16000 is used
-python $CODE_DIR/paragraph2actions/scripts/create_sentencepiece_tokenizer.py \
+python $CODE_DIR/src/paragraph2actions/scripts/create_sentencepiece_tokenizer.py \
   -i $DATA_DIR/src-train.txt -i $DATA_DIR/tgt-train.txt -m $DATA_DIR/sp_model -v $VOCAB_SIZE
 ```
 
 We then tokenize the data:
 ```bash
-python $CODE_DIR/paragraph2actions/scripts/tokenize_with_sentencepiece.py \
+python $CODE_DIR/src/paragraph2actions/scripts/tokenize_with_sentencepiece.py \
   -m $DATA_DIR/sp_model.model -i $DATA_DIR/src-train.txt -o $DATA_DIR/tok-src-train.txt
-python $CODE_DIR/paragraph2actions/scripts/tokenize_with_sentencepiece.py \
+python $CODE_DIR/src/paragraph2actions/scripts/tokenize_with_sentencepiece.py \
   -m $DATA_DIR/sp_model.model -i $DATA_DIR/src-valid.txt -o $DATA_DIR/tok-src-valid.txt
-python $CODE_DIR/paragraph2actions/scripts/tokenize_with_sentencepiece.py \
+python $CODE_DIR/src/paragraph2actions/scripts/tokenize_with_sentencepiece.py \
   -m $DATA_DIR/sp_model.model -i $DATA_DIR/tgt-train.txt -o $DATA_DIR/tok-tgt-train.txt
-python $CODE_DIR/paragraph2actions/scripts/tokenize_with_sentencepiece.py \
+python $CODE_DIR/src/paragraph2actions/scripts/tokenize_with_sentencepiece.py \
   -m $DATA_DIR/sp_model.model -i $DATA_DIR/tgt-valid.txt -o $DATA_DIR/tok-tgt-valid.txt
 ```
 
@@ -143,7 +143,7 @@ Experimental procedure sentences can then be translated to action sequences with
 # Update the path to the OpenNMT model as required
 export MODEL="$DATA_DIR/models/model_step_520000.pt"
 
-python $CODE_DIR/paragraph2actions/scripts/translate_actions.py \
+python $CODE_DIR/src/paragraph2actions/scripts/translate_actions.py \
   -t $MODEL -p $DATA_DIR/sp_model.model -s $DATA_DIR/src-test.txt -o $DATA_DIR/pred.txt
 ```
 
@@ -151,7 +151,7 @@ python $CODE_DIR/paragraph2actions/scripts/translate_actions.py \
 
 To print the metrics on the predictions, the following command can be used:
 ```bash
-python $CODE_DIR/paragraph2actions/scripts/calculate_metrics.py -g $DATA_DIR/tgt-test.txt -p $DATA_DIR/pred.txt
+python $CODE_DIR/src/paragraph2actions/scripts/calculate_metrics.py -g $DATA_DIR/tgt-test.txt -p $DATA_DIR/pred.txt
 ```
 
 
