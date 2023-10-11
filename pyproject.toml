@@ -10,6 +10,7 @@ strict = true
 
 [[tool.mypy.overrides]]
 module = [
+    "chemdataextractor.*",
     "nltk.*",
     "onmt.*",
     "sentencepiece.*",
