@@ -18,6 +18,10 @@ This repository contains code to extract actions from experimental procedures. I
 
 A trained model can be freely used online at https://rxn.res.ibm.com or with the Python wrapper available [here](https://github.com/rxn4chemistry/rxn4chemistry).
 
+Links:
+* [GitHub repository](https://github.com/rxn4chemistry/paragraph2actions)
+* [PyPI package](https://pypi.org/project/paragraph2actions/)
+
 # System Requirements
 
 ## Hardware requirements
@@ -32,19 +36,29 @@ This package is supported for *macOS* and *Linux*. The package has been tested o
 
 ### Python
 A Python version of 3.6 or greater is recommended.
-The Python package dependencies are listed in [`requirements.txt`](requirements.txt).
+The Python package dependencies are listed in [`setup.cfg`](./setup.cfg).
 
 # Installation guide
 
-To use the package, we recommended to create a dedicated Conda environment:
+To use the package, we recommended to create a dedicated `conda` or `venv` environment:
 ```bash
-conda create -n p2a python=3.6
+# Conda
+conda create -n p2a python=3.8
 conda activate p2a
+
+# venv
+python3.8 -m venv myenv
+source myenv/bin/activate
 ```
 
-Then, the following command will install the package and its dependencies:
+The package can then be installed from Pypi:
 ```bash
-pip install -e .
+pip install paragraph2actions
+```
+
+For local development, the package can be installed with:
+```bash
+pip install -e .[dev]
 ```
 The installation should not take more than a few minutes.
 
