@@ -1,6 +1,8 @@
-from typing import Iterable, List, Union
+from typing import Iterable, Iterator, List, Union
 
-from .internal_translation_utils import RawTranslator, Translation, get_onmt_opt
+from rxn.onmt_utils.internal_translation_utils import TranslationResult
+from rxn.onmt_utils.translator import Translator as RawTranslator
+
 from .sentencepiece_tokenizer import SentencePieceTokenizer
 
 
@@ -23,7 +25,7 @@ class Translator:
             translation_model = [translation_model]
         self.translation_model = list(translation_model)
 
-        self.onmt_translator = RawTranslator(self.translation_model)
+        self.onmt_translator = RawTranslator.from_model_path(self.translation_model)
 
     def translate_single(self, sentence: str) -> str:
         """
@@ -42,16 +44,14 @@ class Translator:
 
     def translate_multiple_with_scores(
         self, sentences: List[str], n_best: int = 1
-    ) -> List[List[Translation]]:
-        onmt_opt = get_onmt_opt(translation_model=self.translation_model, n_best=n_best)
+    ) -> Iterator[List[TranslationResult]]:
         tokenized_sentences = [self.sp.tokenize(s) for s in sentences]
 
-        translations = self.onmt_translator.translate_sentences_with_onmt(
-            onmt_opt, tokenized_sentences
+        translations = self.onmt_translator.translate_multiple_with_scores(
+            tokenized_sentences, n_best
         )
 
         for translation_group in translations:
             for t in translation_group:
                 t.text = self.sp.detokenize(t.text)
-
-        return translations
+            yield translation_group
