@@ -1,3 +1,5 @@
+import json
+import logging
 from typing import Iterable, List
 
 import attr
@@ -5,6 +7,9 @@ from rxn.utilities.files import PathLike
 
 from .actions import Action
 from .converter_interface import ActionStringConverter
+
+logger = logging.getLogger(__name__)
+logger.addHandler(logging.NullHandler())
 
 
 @attr.s(auto_attribs=True)
@@ -62,3 +67,38 @@ def save_samples(
         for s in samples:
             f_src.write(f"{s.text}\n")
             f_tgt.write(f"{converter.actions_to_string(s.actions)}\n")
+
+
+def load_samples_from_json(
+    annotated_file: PathLike, converter: ActionStringConverter
+) -> List[TextWithActions]:
+    """
+    Loads samples of sentences with corresponding actions from the JSON file.
+
+    Args:
+        annotated_file: where to load the text and actions from.
+        converter: how to convert from the string representation to the actions.
+    """
+
+    samples = []
+    with open(annotated_file, "rt") as f:
+        for line in f:
+            d = json.loads(line)
+            approved = d.get("approved", True)
+            if not approved:
+                continue
+
+            try:
+                actions = converter.string_to_actions(d["actions"])
+            except Exception as e:
+                logger.error(f"Error converting action \"{d['actions']}\": {e}")
+                continue
+
+            samples.append(
+                TextWithActions(
+                    text=d["sentence"],
+                    actions=actions,
+                )
+            )
+
+    return samples
